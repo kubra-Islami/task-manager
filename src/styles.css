@@ -76,22 +76,36 @@
 }
 .add-task-form {
   display: flex;
+  flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
 }
 .add-task-form input {
   flex: 1;
-  padding: 8px;
+  padding: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
+}
+.add-task-form textarea {
+  flex: 1;
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: none;
+  min-height: 20vh;
 }
 .add-task-form button {
   background: #007bff;
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 15px 12px;
   cursor: pointer;
   border-radius: 5px;
+  width: 20%;
+
+}
+.add-task-form button:hover {
+  background: #1785fc;
 }
 .task-list {
   display: flex;
@@ -106,9 +120,16 @@
   border: 1px solid #ddd;
   background: #f9f9f9;
 }
-.task-list .done {
-  background: #d4edda;
-}
+/*.task-list .done {*/
+/*  background: #d4edda;*/
+/*}*/
+
+/*.task.todo { background-color: lightblue; }*/
+.task.in-progress { background-color: orange; }
+.task.done { background-color: #d4edda; }
+
+
+
 .task-list .actions {
   display: flex;
   gap: 10px;
@@ -118,4 +139,47 @@
   border: none;
   cursor: pointer;
   font-size: 16px;
+}
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.task:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.task:active {
+  background-color: #e0e0e0;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+.spin {
+  animation: spin 2s infinite linear;
+  height: 50px;
+  width: 30px;
+  color: #333;
+}
+.spinActive{
+  animation: spin 2s infinite linear;
+  color: #f9f9f9;
+  height: 50px;
+  width: 30px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

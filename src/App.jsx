@@ -1,13 +1,12 @@
-import AddTask from './components/AddTask';
-import TaskList from './components/TaskList';
+import React from 'react';
+import AddTask from './components/AddTask.jsx';
+import TaskList from './components/TaskList.jsx';
 import './styles.css';
 
 function App() {
-
-
     return (
         <div className='container'>
-            <h1>Task Maneging</h1>
+            <h1>Task Management</h1>
             <AddTask/>
             <TaskList/>
         </div>
