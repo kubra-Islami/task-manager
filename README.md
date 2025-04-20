@@ -15,7 +15,7 @@ A simple and efficient **Task Manager Dashboard** built with **React, JavaScript
 
 ## 📂 Project Structure
 
-task-manager/ │── src/ │ │── assets/ # Images, icons, etc. │ │── components/ # Reusable UI components │ │── store/ # Zustand state management │ │── pages/ # Main pages │ │── App.tsx # Main entry file │ │── main.tsx # Root render file │ │── styles.scss # Global styles │── public/ # Static assets │── README.md # Project documentation │── package.json # Dependencies and scripts
+task-manager/ │── src/ │ │── assets/ # Images, icons, etc. │ │── components/ # Reusable UI components │ │── store/ # Zustand state management │ │── pages/ # Main pages │ │── App.tsx # Main entry file │ │── main.tsx # Root render file │ │── styles.css # Global styles │── public/ # Static assets │── README.md # Project documentation │── package.json # Dependencies and scripts
 
 
 ## 🛠 Installation & Setup
