@@ -1,14 +1,14 @@
-import React from 'react';
-import AddTask from './components/AddTask.jsx';
-import TaskList from './components/TaskList.jsx';
-import './styles.css';
+import { AppRoutes } from './AppRoutes.jsx'
+
 
 function App() {
+    const isLoggedIn = true // Your logic here
+
     return (
-        <div className='container'>
-            <h1>Task Management</h1>
-            <AddTask/>
-            <TaskList/>
+        <div >
+            <main >
+                <AppRoutes isLoggedIn={isLoggedIn} />
+            </main>
         </div>
     )
 }

@@ -1,6 +1,9 @@
+// List of tasks with filters
+
+
 import React from 'react';
-import {useTaskStore} from '../store/taskStore.jsx';
-import TaskItem from './TaskItem';
+import {useTaskStore} from '../../store/taskStore.jsx';
+import TaskItem from '../../components/TaskItem.jsx';
 import {
     DndContext,
     closestCenter,
@@ -16,17 +19,16 @@ import {
 } from "@dnd-kit/sortable";
 
 
-
 const TaskList = () => {
     const {tasks, setTasks, updateTask, deleteTask} = useTaskStore();
     // Sensors for Dragging
     const sensors = useSensors(
-        useSensor(PointerSensor,{
+        useSensor(PointerSensor, {
             activationConstraint: {
                 distance: 8,
             },
         }),
-        useSensor(KeyboardSensor,{
+        useSensor(KeyboardSensor, {
             activationConstraint: {
                 delay: 200,
                 tolerance: 6,
