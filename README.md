@@ -1,6 +1,6 @@
-# 📌 Task Manager Dashboard
+# 📌 Task Management
 
-A simple and efficient **Task Manager Dashboard** built with **React, TypeScript, Zustand, and css**. This application allows users to **add, update, and delete tasks** while maintaining a smooth user experience.
+A simple and efficient **Task Manager Dashboard** built with **React, JavaScript, Zustand, and css**. This application allows users to **add, update, and delete tasks** while maintaining a smooth user experience.
 
 ## 🚀 Features
 
@@ -9,7 +9,7 @@ A simple and efficient **Task Manager Dashboard** built with **React, TypeScript
 ✅ **Delete tasks** when completed  
 ✅ **State management** using Zustand  
 ✅ **Modern UI** with css  
-✅ **Fast & Lightweight** (built with Vite)  
+✅ **Fast & Lightweight** (built with Vite)
 
 ---
 
