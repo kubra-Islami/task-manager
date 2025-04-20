@@ -8,7 +8,7 @@ A simple and efficient **Task Manager Dashboard** built with **React, JavaScript
 ✅ **Mark tasks as done**  
 ✅ **Delete tasks** when completed  
 ✅ **State management** using Zustand  
-✅ **Modern UI** with css  
+✅ **Modern UI** with bootstrap, react-bootstrap & custom-css  
 ✅ **Fast & Lightweight** (built with Vite)
 
 ---
