@@ -1,18 +1,20 @@
 // Manage task data globally
 
-// import {createContext} from 'react';
+// src/context/TaskContext.jsx
+import React, { createContext, useContext, useState } from 'react';
 
+const TaskContext = createContext();
 
-// const initialState = {
-//     tasks,
-//     setTasks,
-//     updateTask,
-//     deleteTask
-// }
-//
-// const TaskContext = createContext();
-//
-//
-// function reducer(state, action) {
-//     switch (action.type) {}
-// }
+export const useTasks = () => useContext(TaskContext);
+
+export const TaskProvider = ({ children }) => {
+    const [tasks, setTasks] = useState([]);
+
+    const addTask = (task) => setTasks((prev) => [...prev, task]);
+
+    return (
+        <TaskContext.Provider value={{ tasks, addTask }}>
+            {children}
+        </TaskContext.Provider>
+    );
+};

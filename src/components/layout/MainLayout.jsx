@@ -1,24 +1,32 @@
 // src/components/layout/MainLayout.jsx
-import Navbar from './Navbar'
-import Sidebar from './Sidebar'
-import { Container, Row, Col } from 'react-bootstrap'
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+import { Container, Row, Col } from 'react-bootstrap';
+import RouteSpinner from '../RouteSpinner/RouteSpinner.jsx'; // Adjust path
 
 const MainLayout = ({ children }) => {
     return (
         <>
             <Navbar />
+            <RouteSpinner />
             <Container fluid>
                 <Row>
-                    <Col xs={12} md={3} lg={2} className="p-0">
+                    <Col xs={12} md={3} lg={2} className="p-0 sidebar-wrapper">
                         <Sidebar />
                     </Col>
-                    <Col xs={12} md={9} lg={10} className="p-4">
+                    <Col
+                        xs={12}
+                        md={9}
+                        lg={10}
+                        className="pt-5 mb-3"
+                        style={{ paddingBottom: '80px' }} // prevent overlap on small screens
+                    >
                         {children}
                     </Col>
                 </Row>
             </Container>
         </>
-    )
-}
+    );
+};
 
-export default MainLayout
+export default MainLayout;

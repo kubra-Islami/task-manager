@@ -1,0 +1,16 @@
+.spin {
+    animation: spin 2s infinite linear;
+    height: 50px;
+    width: 30px;
+    color: #333;
+}
+.spinActive{
+    animation: spin 2s infinite linear;
+    color: #f9f9f9;
+    height: 50px;
+    width: 30px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
