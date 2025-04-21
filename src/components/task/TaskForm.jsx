@@ -75,8 +75,17 @@ const TaskForm = () => {
                         {...register('description')}
                     />
                 </Form.Group>
-
-                <Form.Group className="mb-3">
+                <Form.Group className="mb-3 w-50">
+                    <Form.Label>Status</Form.Label>
+                    <Form.Select {...register('status')}>
+                        <option value="todo">To Do</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="cancelled">Cancelled</option>
+                        <option value="On-Hold">On Hold</option>
+                        <option value="done">Done</option>
+                    </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3 ">
                     <Form.Label>Due Date</Form.Label>
                     <Controller
                         control={control}
@@ -95,9 +104,9 @@ const TaskForm = () => {
                     />
                 </Form.Group>
 
-                <Row className="mb-3">
+                <Row className="mb-3 ">
                     <Col>
-                        <Form.Group>
+                        <Form.Group >
                             <Form.Label>Priority</Form.Label>
                             <Form.Select {...register('priority')}>
                                 <option value="">Select priority</option>
@@ -132,7 +141,7 @@ const TaskForm = () => {
                     </Col>
                 </Row>
 
-                <Form.Label>Subtasks</Form.Label>
+                {/*<Form.Label>Subtasks</Form.Label>*/}
                 <AnimatePresence>
                     {fields.map((field, index) => (
                         <motion.div
@@ -152,8 +161,7 @@ const TaskForm = () => {
                                 <Col xs={2}>
                                     <Button
                                         variant="outline-danger"
-                                        onClick={() => remove(index)}
-                                        disabled={fields.length === 1}
+                                        onClick={() => remove(index)} // Properly remove the subtask by index
                                     >
                                         ❌
                                     </Button>
@@ -162,6 +170,7 @@ const TaskForm = () => {
                         </motion.div>
                     ))}
                 </AnimatePresence>
+
 
                 <Button variant="warning" onClick={() => append('')} className="mb-3">
                     ➕ Add Subtask

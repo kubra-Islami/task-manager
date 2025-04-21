@@ -8,12 +8,6 @@ const Profile = () => {
     const { tasks } = useTasks()
     const { user } = useUser();
 
-    // const user = {
-    //     name: 'Kobra Eslami',
-    //     email: 'kobra@example.com',
-    //     avatar: 'src/assets/avatar.jpg',
-    // }
-
     const completedTasks = tasks.filter(task => task.status === 'Completed').length
     const inProgressTasks = tasks.filter(task => task.status === 'In Progress').length
     const pendingTasks = tasks.filter(task => task.status === 'Pending').length

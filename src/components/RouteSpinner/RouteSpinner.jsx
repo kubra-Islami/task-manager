@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+// src/components/RouteSpinner.jsx
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import './RouteSpinner.css'; // your spin classes
+import Spinner from 'react-bootstrap/Spinner';
 
 const RouteSpinner = () => {
     const location = useLocation();
@@ -8,22 +9,15 @@ const RouteSpinner = () => {
 
     useEffect(() => {
         setLoading(true);
-
-        // Fake loading delay
-        const timeout = setTimeout(() => {
-            setLoading(false);
-        }, 800); // customize duration
-
-        return () => clearTimeout(timeout);
+        const timer = setTimeout(() => setLoading(false), 400); // fake delay
+        return () => clearTimeout(timer);
     }, [location]);
 
-    return (
-        loading && (
-            <div className="d-flex justify-content-center align-items-center py-3">
-                <div className="spin" />
-            </div>
-        )
-    );
+    return loading ? (
+        <div className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-white " style={{ zIndex: 9999 }}>
+            <Spinner animation="border" variant="dark" />
+        </div>
+    ) : null;
 };
 
 export default RouteSpinner;
