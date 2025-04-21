@@ -1,9 +1,12 @@
 import { Badge, Button, Card, ListGroup } from "react-bootstrap";
-import React from "react";
+import React, {useState} from "react";
+import {useTheme} from "@/Context/ThemeContext.jsx";
 
-const TaskCard = ({ task, handleEdit }) => {
+
+const TaskCard = ({ task,handleEdit }) => {
+    const { theme, toggleTheme } = useTheme();
     return (
-        <Card className="shadow-sm h-100 d-flex flex-column overflow-hidden w-100">
+        <Card className="shadow-sm h-100 d-flex flex-column overflow-hidden w-100" >
             <Card.Body className="d-flex flex-column justify-content-between p-3">
 
                 {/* Responsive Header Section */}

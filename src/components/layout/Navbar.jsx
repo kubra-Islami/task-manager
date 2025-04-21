@@ -10,7 +10,7 @@ const CustomNavbar = () => {
     return (
         <Navbar className="px-3 py-2" bg="light" variant="light" expand="lg">
             <Container fluid>
-                <Navbar.Brand href="/">📝 TaskFlow</Navbar.Brand>
+                <Navbar.Brand >📝 TaskFlow</Navbar.Brand>
                 <Nav className="ms-auto d-flex align-items-center" style={{flexWrap: 'nowrap'}}>
                     <div className="d-flex align-items-center gap-2 flex-nowrap" style={{whiteSpace: 'nowrap'}}>
                         <span className="me-3 d-none d-sm-inline-block"
