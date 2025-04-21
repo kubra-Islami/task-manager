@@ -1,10 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useTasks } from '../../context/TaskContext';
 import MainLayout from '../../components/layout/MainLayout';
-import { Card, Container, ListGroup, Row, Col, Badge } from 'react-bootstrap';
+import {Card, Container, ListGroup, Row, Col, Badge, Button} from 'react-bootstrap';
+import TaskFormModal from "@/components/TaskFormModal/TaskFormModal.jsx";
 
 const Tasks = () => {
     const { tasks } = useTasks();
+    const [showModal, setShowModal] = useState(false);
+    const [selectedTaskId, setSelectedTaskId] = useState(null);
+
+    const handleEdit = (taskId) => {
+        setSelectedTaskId(taskId);
+        setShowModal(true);  // Open the modal
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false); // Close the modal
+    };
+
 
     return (
         <MainLayout>
@@ -59,6 +72,9 @@ const Tasks = () => {
                                                 </ListGroup>
                                             </>
                                         )}
+                                        <Button variant="warning" onClick={() => handleEdit(task.id)}>
+                                            ✏️ Edit
+                                        </Button>
                                     </Card.Body>
 
                                 </Card>
@@ -66,9 +82,20 @@ const Tasks = () => {
                         ))}
                     </Row>
                 )}
+                {/* Show the modal when showModal is true */}
+                {showModal && (
+                    <TaskFormModal
+                        show={showModal}
+                        handleClose={handleCloseModal}
+                        taskId={selectedTaskId} // Pass the selected task ID to the modal
+                    />
+                )}
             </Container>
+
         </MainLayout>
     );
+
+
 };
 
 export default Tasks;

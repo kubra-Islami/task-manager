@@ -7,11 +7,11 @@ function App() {
     const isLoggedIn = true // Your logic here
 
     return (
-        <UserProvider>
-            <TaskProvider>
+        <TaskProvider>
+            <UserProvider>
                 <AppRoutes isLoggedIn={isLoggedIn}/>
-            </TaskProvider>
-        </UserProvider>
+            </UserProvider>
+        </TaskProvider>
     )
 }
 

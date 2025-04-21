@@ -2,13 +2,12 @@
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import { Container, Row, Col } from 'react-bootstrap';
-import RouteSpinner from '../RouteSpinner/RouteSpinner.jsx'; // Adjust path
+// import RouteSpinner from '../RouteSpinner/RouteSpinner.jsx'; // Adjust path
 
 const MainLayout = ({ children }) => {
     return (
         <>
             <Navbar />
-            <RouteSpinner />
             <Container fluid>
                 <Row>
                     <Col xs={12} md={3} lg={2} className="p-0 sidebar-wrapper">

@@ -26,3 +26,4 @@ const RouteSpinner = () => {
     );
 };
 
+export default RouteSpinner;

@@ -1,8 +1,6 @@
-// src/context/TaskContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const TaskContext = createContext();
-
 export const useTasks = () => useContext(TaskContext);
 
 export const TaskProvider = ({ children }) => {
@@ -16,21 +14,17 @@ export const TaskProvider = ({ children }) => {
     }, [tasks]);
 
     const addTask = (task) => {
-        setTasks((prev) => [...prev, task]);
+        setTasks(prev => [...prev, task]);
     };
 
     const updateTask = (updatedTask) => {
-        setTasks((prevTasks) =>
-            prevTasks.map((task) =>
-                task.id === updatedTask.id ? { ...task, ...updatedTask } : task
-            )
-        );
+        setTasks(prev => prev.map(task => task.id === updatedTask.id ? updatedTask : task));
     };
 
-    const getTaskById = (id) => tasks.find((task) => task.id === id);
+    const getTaskById = (id) => tasks.find(task => task.id === id);
 
     return (
-        <TaskContext.Provider value={{ tasks, addTask, updateTask, getTaskById }}>
+        <TaskContext.Provider value={{ tasks, addTask, updateTask, getTaskById}}>
             {children}
         </TaskContext.Provider>
     );
