@@ -45,7 +45,7 @@ const Tasks = () => {
                 <TaskFilter onFilterChange={filterTasks} />
 
                 {filteredTasks.length === 0 ? (
-                    <div className="text-center text-muted">
+                    <div className="text-center text-muted theme-card">
                         <Card className="shadow-sm h-100 d-flex flex-column overflow-hidden">
                             <Card.Body className="p-3 ">
                                 <p className="fs-5">No tasks match the filter criteria.</p>

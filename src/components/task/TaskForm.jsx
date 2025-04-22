@@ -10,6 +10,7 @@ import { useTasks } from '../../context/TaskContext';
 import { useNavigate } from 'react-router-dom';
 
 import { motion, AnimatePresence } from 'framer-motion';
+import {useTheme} from "@/Context/ThemeContext.jsx";
 
 const priorities = ['Low', 'Medium', 'High'];
 const tagColors = ['#F87171', '#FBBF24', '#34D399', '#60A5FA', '#A78BFA'];
@@ -47,9 +48,8 @@ const TaskForm = () => {
         reset();
         navigate('/tasks');
     };
-
     return (
-        <Container className="mt-5 p-4 bg-light rounded shadow-sm">
+        <Container className="theme-card mt-5 p-4 rounded shadow-sm">
             <h2 className="mb-4">📝 Create New Task</h2>
 
             <Form onSubmit={handleSubmit(onSubmit)}>

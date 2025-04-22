@@ -9,14 +9,14 @@ function App() {
     const isLoggedIn = true;
 
     return (
-        // <ThemeProvider> {/* 👈 Wrap everything */}
+        <ThemeProvider> {/* 👈 Wrap everything */}
             <TaskProvider>
                 <UserProvider>
                     <RouteSpinner />
                     <AppRoutes isLoggedIn={isLoggedIn} />
                 </UserProvider>
             </TaskProvider>
-        // </ThemeProvider>
+       </ThemeProvider>
     );
 }
 

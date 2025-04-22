@@ -3,12 +3,15 @@ import React, { useEffect } from 'react';
 import { Modal, Button, Form, Row, Col, InputGroup } from 'react-bootstrap';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useTasks } from '../../context/TaskContext';
+import { useTheme } from '../../context/ThemeContext'; // Adjust the path if needed
 
 const tagColors = ['#F87171', '#FBBF24', '#34D399', '#60A5FA', '#A78BFA'];
 
 const TaskFormModal = ({ show, handleClose, taskId }) => {
     const { tasks, updateTask } = useTasks();
     const task = tasks.find((t) => t.id === taskId);
+    const { theme } = useTheme(); // 'light' or 'dark'
+
 
     const formatDate = (dateStr) => {
         if (!dateStr) return '';
@@ -79,11 +82,15 @@ const TaskFormModal = ({ show, handleClose, taskId }) => {
     };
 
     return (
-        <Modal show={show} onHide={handleClose} centered>
-            <Modal.Header closeButton>
+        <Modal   show={show}
+                 onHide={handleClose}
+                 centered
+                 dialogClassName={theme === 'dark' ? 'modal-dark' : 'modal-light'}
+        >
+            <Modal.Header closeButton className={theme === 'dark' ? 'bg-dark text-white' : ''}>
                 <Modal.Title>Edit Task</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className={theme === 'dark' ? 'bg-dark text-white' : 'bg-white text-dark'}>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <Form.Group className="mb-3">
                         <Form.Label>Title</Form.Label>

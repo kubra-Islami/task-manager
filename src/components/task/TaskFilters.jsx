@@ -19,7 +19,7 @@ const TaskFilter = ({ onFilterChange }) => {
             <Col xs={12} sm={6} md={4} className="mt-2">
                 <Form.Group controlId="statusFilter">
                     <Form.Control as="select" value={status} onChange={(e) => setStatus(e.target.value)}>
-                        <option value="">choose status</option>
+                        <option value="">All status</option>
                         <option value="todo">To Do</option>
                         <option value="in-progress">In Progress</option>
                         <option value="cancelled">Cancelled</option>
@@ -28,12 +28,6 @@ const TaskFilter = ({ onFilterChange }) => {
                     </Form.Control>
                 </Form.Group>
             </Col>
-            {/*<Col xs={12} sm={6} md={4}>*/}
-            {/*    <Form.Group controlId="tagFilter">*/}
-            {/*        <Form.Label>Tag</Form.Label>*/}
-            {/*        <Form.Control type="text" value={tag} onChange={(e) => setTag(e.target.value)} placeholder="Enter tag" />*/}
-            {/*    </Form.Group>*/}
-            {/*</Col>*/}
             <Col xs={12} sm={6} md={1} className="mt-2">
                 <Button onClick={handleFilterChange}>Filter</Button>
             </Col>

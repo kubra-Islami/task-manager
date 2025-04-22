@@ -1,29 +1,114 @@
+:root {
+    --bg-color: #f9fafb;
+    --card-bg: #ffffff;
+    --primary-color: #0fc6c6;
+    --secondary-color: #242526;
+    --text-color: #212529;
+    --muted-text: #242526;
+    --border-color: #dee2e6;
+    --hover-bg: #e9ecef;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
 
-/* src/components/layout/Sidebar.css */
-.nav-link.active {
+[data-theme='dark'] {
+    --bg-color: #242526; /* Lighter dark background */
+    --card-bg: #272822;  /* Even lighter card background */
+    --primary-color: #0fc6c6; /* Retaining primary color */
+    --secondary-color: #a5a8ad; /* Much lighter secondary color */
+    --text-color: #e0e0e0; /* Lighter text for more contrast */
+    --muted-text: #b0b3b8; /* Softer muted text color */
+    --border-color: #585858; /* Subtle border color */
+    --hover-bg: #60666e; /* Slightly lighter hover background */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+[data-theme='dark'] input,
+[data-theme='dark'] textarea,
+[data-theme='dark'] select,
+[data-theme='dark'] .form-control,
+[data-theme='dark'] .form-select {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme='dark'] input::placeholder,
+[data-theme='dark'] textarea::placeholder {
+    color: var(--muted-text);
+}
+
+[data-theme='dark'] .form-control:focus,
+[data-theme='dark'] .form-select:focus {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(15, 198, 198, 0.25);
+}
+
+/* General Styles */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card, .navbar, .sidebar {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+a, .sidebar-link {
+    color: var(--text-color);
+}
+
+.sidebar-link:hover, .sidebar-link.active-link {
+    background-color: var(--hover-bg);
+    color: var(--primary-color);
+}
+
+button, .btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+}
+
+button:hover, .btn:hover {
+    opacity: 0.9;
+}
+
+.navbar .navbar-brand {
+    color: var(--text-color) !important;
     font-weight: bold;
-    background-color: #e9ecef;
-    border-radius: 0.375rem;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
 }
 
-.task-form-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1rem;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+.theme-text {
+    color: var(--text-color) !important;
 }
-.navbar span {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 120px; /* or adjust as needed */
+
+.navbar .navbar-brand:hover {
+    cursor: pointer;
+    color: var(--primary-color) !important;
 }
+.modal-dark .modal-content {
+    background-color: #2c2c2c;
+    color: white;
+}
+
+.modal-light .modal-content {
+    background-color: white;
+    color: black;
+}
+
+.route-spinner {
+    transition: background-color 0.3s ease;
+}
+
 
 
 @media (max-width: 768px) {
     .main-content {
-        padding-bottom: 80px; /* or height of your fixed sidebar */
+        padding-bottom: 80px;
     }
 }

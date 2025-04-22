@@ -24,9 +24,10 @@ const Settings = () => {
 
     return (
         <MainLayout>
-            <Container>
+            <Container className="theme-card mt-5 p-4 rounded shadow-sm">
                 <h2 className="mb-4">⚙️ Settings</h2>
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit}
+                >
                     <Row>
                         <Col md={6}>
                             <Form.Group className="mb-3">

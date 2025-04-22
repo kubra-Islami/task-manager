@@ -1,0 +1,88 @@
+/* Task card base styles */
+.task-card,
+.theme-card {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    transition: background-color 0.5s ease, color 0.3s ease;
+}
+
+/* Description text */
+.task-card .text-secondary {
+    color: var(--muted-text) !important;
+}
+
+/* Subtask list group */
+.sub-task-bg {
+    /*background-color: var(--bg-color); !* Default for light theme *!*/
+}
+
+[data-theme="dark"] .sub-task-bg {
+    /*background-color: var(--card-bg); !* Dark theme background for subtasks *!*/
+}
+
+.sub-task-bg .list-group-item {
+    background-color: var(--hover-bg);
+    border: none;
+    color: var(--text-color);
+    padding-left: 0.5rem;
+    transition: background-color 0.2s ease;
+    border-radius: 0.5rem;
+    margin-bottom: 4px;
+}
+
+/* Button styling */
+.task-card .btn-warning {
+    background-color: var(--primary-color);
+    border: none;
+    color: #fff;
+}
+
+.task-card .btn-warning:hover {
+    opacity: 0.85;
+}
+.theme-toggle {
+    width: 60px;
+    height: 30px;
+    background-color: var(--border-color);
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 0 5px var(--shadow-color);
+    user-select: none;
+}
+
+.toggle-thumb {
+    width: 24px;
+    height: 24px;
+    background-color: var(--card-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.toggle-thumb.light {
+    transform: translateX(0);
+}
+
+.toggle-thumb.dark {
+    transform: translateX(30px);
+}
+.theme-card .card-title {
+    color: var(--text-color);
+}
+
+.theme-card .card-subtitle {
+    color: var(--muted-text);
+}
+
+.card-text {
+    margin-bottom: 0.5rem; /* instead of 1rem or 1.5rem */
+}

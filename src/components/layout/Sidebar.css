@@ -4,7 +4,8 @@
     position: sticky;
     top: 0;
     height: 100vh;
-    background-color: #f8f9fa;
+    background-color: var(--card-bg);
+    color: var(--text-color);
     padding: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
@@ -14,8 +15,20 @@
 }
 
 .sidebar-link {
-    color: #333 !important;
+    color: var(--text-color) !important;
     transition: background-color 0.3s, color 0.3s;
+}
+.sidebar-wrapper{
+    margin-top: 1px;
+}
+.sidebar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background-color: var(--hover-bg);
 }
 
 .sidebar-link:hover,
