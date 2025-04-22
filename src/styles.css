@@ -14,6 +14,7 @@
     --bg-color: #242526; /* Lighter dark background */
     --card-bg: #272822;  /* Even lighter card background */
     --primary-color: #0fc6c6; /* Retaining primary color */
+    /*--primary-color: #60a5fa;*/
     --secondary-color: #a5a8ad; /* Much lighter secondary color */
     --text-color: #e0e0e0; /* Lighter text for more contrast */
     --muted-text: #b0b3b8; /* Softer muted text color */
@@ -59,13 +60,11 @@ body {
 
 a, .sidebar-link {
     color: var(--text-color);
+    transition: all 3ms ease-in-out;
 }
-
-.sidebar-link:hover, .sidebar-link.active-link {
-    background-color: var(--hover-bg);
+.sidebar .sidebar-link.active-link {
     color: var(--primary-color);
 }
-
 button, .btn {
     background-color: var(--primary-color);
     color: #fff;
@@ -105,6 +104,12 @@ button:hover, .btn:hover {
     transition: background-color 0.3s ease;
 }
 
+[data-theme='dark'] .btn-close {
+    filter: invert(1); /* inverts black to white */
+}
+[data-theme='dark'] .btn-close {
+    /*background-image: var(--bs-btn-close-white);*/
+}
 
 
 @media (max-width: 768px) {

@@ -8,7 +8,7 @@ const CustomNavbar = () => {
     const { theme, toggleTheme } = useTheme();
 
     return (
-        <Navbar className="theme-bg px-3 py-2" expand="lg">
+        <Navbar className="theme-bg px-3 py-2 navbar" expand="lg">
         <Container fluid>
                 <Navbar.Brand className='theme-text'>📝 TaskFlow</Navbar.Brand>
                 <Nav className="ms-auto d-flex align-items-center" style={{flexWrap: 'nowrap'}}>

@@ -82,7 +82,7 @@ const TaskForm = () => {
                         <option value="todo">To Do</option>
                         <option value="in-progress">In Progress</option>
                         <option value="cancelled">Cancelled</option>
-                        <option value="On-Hold">On Hold</option>
+                        <option value="on-hold">On Hold</option>
                         <option value="done">Done</option>
                     </Form.Select>
                 </Form.Group>
