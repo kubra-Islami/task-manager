@@ -6,10 +6,16 @@ import React, {useState} from 'react';
 import {Form, Button, Container, Row, Col} from 'react-bootstrap';
 import {useUser} from '../../context/UserContext';
 import MainLayout from "@/components/layout/MainLayout.jsx";
+import { useTheme } from '@/Context/ThemeContext.jsx';
 
 const Settings = () => {
     const {user, setUser} = useUser();
-    const [formData, setFormData] = useState(user);
+    // const [formData, setFormData] = useState(user);
+    const { theme, toggleTheme } = useTheme();
+    const [formData, setFormData] = useState({
+        ...user,
+        reminders: user.reminders ?? true,
+    });
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -21,6 +27,7 @@ const Settings = () => {
         setUser(formData); // Update global user state
         alert('Profile updated!');
     };
+
 
     return (
         <MainLayout>
@@ -57,6 +64,29 @@ const Settings = () => {
                                     name="avatar"
                                     value={formData.avatar}
                                     onChange={handleChange}
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Check
+                                    type="switch"
+                                    id="theme-toggle"
+                                    label="Enable Dark Mode"
+                                    checked={theme === 'dark'}
+                                    onChange={toggleTheme}
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Check
+                                    type="checkbox"
+                                    label="Receive task reminders"
+                                    name="reminders"
+                                    checked={formData.reminders}
+                                    onChange={(e) =>
+                                        setFormData((prev) => ({
+                                            ...prev,
+                                            reminders: e.target.checked,
+                                        }))
+                                    }
                                 />
                             </Form.Group>
 

@@ -8,7 +8,6 @@ import Profile from './pages/Profile/Profile'
 import Settings from './pages/Settings/Settings'
 import Tasks from './pages/Tasks/Tasks';
 import TaskForm from "@/components/task/TaskForm.jsx";
-import RouteSpinner from "@/components/RouteSpinner/RouteSpinner.jsx";
 
 export const AppRoutes = ({ isLoggedIn }) => {
     if (!isLoggedIn) {
