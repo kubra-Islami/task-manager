@@ -82,7 +82,7 @@ const TaskFormModal = ({ show, handleClose, taskId }) => {
     };
 
     return (
-        <Modal   show={show}
+        <Modal show={show}
                  onHide={handleClose}
                  centered
                  dialogClassName={theme === 'dark' ? 'modal-dark' : 'modal-light'}

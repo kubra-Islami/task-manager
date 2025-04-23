@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTasks } from '../../context/TaskContext';
 import MainLayout from '../../components/layout/MainLayout';
 import { Card, Container, ListGroup, Row, Col, Badge, Button } from 'react-bootstrap';
@@ -11,7 +11,13 @@ const Tasks = () => {
     const [showModal, setShowModal] = useState(false);
     const [selectedTaskId, setSelectedTaskId] = useState(null);
     const [filteredTasks, setFilteredTasks] = useState(tasks);
-    // Filter logic
+    const [activeFilter, setActiveFilter] = useState({}); // to keep track of current filters
+
+    // Re-apply filters whenever `tasks` or `activeFilter` changes
+    useEffect(() => {
+        filterTasks(activeFilter);
+    }, [tasks]);
+
     const filterTasks = (filter) => {
         let filtered = tasks;
 
@@ -23,18 +29,18 @@ const Tasks = () => {
             filtered = filtered.filter(task => task.tag && task.tag.toLowerCase().includes(filter.tag.toLowerCase()));
         }
 
+        setActiveFilter(filter); // Save current filters
         setFilteredTasks(filtered);
     };
 
     const handleEdit = (taskId) => {
         setSelectedTaskId(taskId);
-        setShowModal(true);  // Open the modal
+        setShowModal(true);
     };
 
     const handleCloseModal = () => {
-        setShowModal(false); // Close the modal
+        setShowModal(false);
     };
-
 
     return (
         <MainLayout>
@@ -47,22 +53,21 @@ const Tasks = () => {
                 {filteredTasks.length === 0 ? (
                     <div className="text-center text-muted theme-card">
                         <Card className="shadow-sm h-100 d-flex flex-column overflow-hidden">
-                            <Card.Body className="p-3 ">
+                            <Card.Body className="p-3">
                                 <p className="fs-5">No tasks match the filter criteria.</p>
                             </Card.Body>
                         </Card>
-
                     </div>
                 ) : (
                     <Row xs={1} md={1} lg={2} xl={3} className="g-4">
                         {filteredTasks.map((task) => (
                             <Col key={task.id}>
-                                <TaskCard task={task} handleEdit={handleEdit}/>
+                                <TaskCard task={task} handleEdit={handleEdit} />
                             </Col>
                         ))}
                     </Row>
                 )}
-                {/* Show the modal when showModal is true */}
+
                 {showModal && (
                     <TaskFormModal
                         show={showModal}

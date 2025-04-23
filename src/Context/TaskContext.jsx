@@ -20,13 +20,12 @@ export const TaskProvider = ({ children }) => {
     };
 
     const updateTask = (updatedTask) => {
-        setTasks((prevTasks) =>
-            prevTasks.map((task) =>
-                task.id === updatedTask.id ? { ...task, ...updatedTask } : task
+        setTasks(prevTasks =>
+            prevTasks.map(task =>
+                task.id === updatedTask.id ? updatedTask : task
             )
         );
     };
-
     const getTaskById = (id) => tasks.find((task) => task.id === id);
 
     return (

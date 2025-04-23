@@ -107,10 +107,35 @@ button:hover, .btn:hover {
 [data-theme='dark'] .btn-close {
     filter: invert(1); /* inverts black to white */
 }
-[data-theme='dark'] .btn-close {
-    /*background-image: var(--bs-btn-close-white);*/
-}
 
+
+.status-badge {
+    border-radius: 1rem;
+    padding: 0.35em 0.8em;
+    text-transform: capitalize;
+    font-size: 0.8rem;
+    color: #fff;
+
+    &.todo {
+        background: linear-gradient(45deg, #FBBF24, #FCD34D); // Amber
+    }
+
+    &.in-progress {
+        background: linear-gradient(45deg, #60A5FA, #3B82F6); // Blue
+    }
+
+    &.cancelled {
+        background: linear-gradient(45deg, #F87171, #EF4444); // Red
+    }
+
+    &.on-hold {
+        background: linear-gradient(45deg, #A78BFA, #8B5CF6); // Purple
+    }
+
+    &.done {
+        background: linear-gradient(45deg, #34D399, #10B981); // Green
+    }
+}
 
 @media (max-width: 768px) {
     .main-content {

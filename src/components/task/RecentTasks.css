@@ -1,0 +1,75 @@
+.recent-tasks-card {
+    background-color: var(--card-bg);
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 8px 20px var(--shadow-color);
+    backdrop-filter: blur(6px);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recent-task-item {
+    /*background-color: var(--card-bg);*/
+    /*color: var(--text-color);*/
+    /*border-bottom: 1px solid var(--border-color);*/
+    /*border-radius: 0.75rem;*/
+    /*padding: 0.75rem 1rem;*/
+    /*transition: transform 0.2s ease, box-shadow 0.2s ease;*/
+
+    /*&:hover {*/
+    /*    transform: translateY(-2px);*/
+    /*    box-shadow: 0 6px 12px var(--shadow-color);*/
+    /*}*/
+}
+
+.task-info {
+    max-width: 220px;
+}
+
+.no-task-msg {
+    background-color: transparent;
+    color: var(--muted-text);
+}
+
+/*.status-badge {*/
+/*    border-radius: 1rem;*/
+/*    padding: 0.35em 0.8em;*/
+/*    text-transform: capitalize;*/
+/*    font-size: 0.8rem;*/
+/*    color: #fff;*/
+
+/*    &.todo {*/
+/*        background: linear-gradient(45deg, #FBBF24, #FCD34D); // Amber*/
+/*    }*/
+
+/*    &.in-progress {*/
+/*        background: linear-gradient(45deg, #60A5FA, #3B82F6); // Blue*/
+/*    }*/
+
+/*    &.cancelled {*/
+/*        background: linear-gradient(45deg, #F87171, #EF4444); // Red*/
+/*    }*/
+
+/*    &.on-hold {*/
+/*        background: linear-gradient(45deg, #A78BFA, #8B5CF6); // Purple*/
+/*    }*/
+
+/*    &.done {*/
+/*        background: linear-gradient(45deg, #34D399, #10B981); // Green*/
+/*    }*/
+/*}*/
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

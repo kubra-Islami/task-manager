@@ -1,4 +1,4 @@
-import {Badge, Button, Card, Container, ListGroup} from "react-bootstrap";
+import {Badge, Button, Card, ListGroup} from "react-bootstrap";
 import React from "react";
 import "./taskCard.css";
 
@@ -28,9 +28,10 @@ const TaskCard = ({task, handleEdit}) => {
 
                         {/* Ensure badge doesn't shrink or overflow */}
                         <div className="flex-shrink-0">
-                            <Badge bg="info" pill className="text-nowrap">
-                                {task.status}
-                            </Badge>
+                            <Badge className={`status-badge ${task.status}`}>{task.status}</Badge>
+                            {/*<Badge bg="info" pill className="text-nowrap">*/}
+                            {/*    {task.status}*/}
+                            {/*</Badge>*/}
                         </div>
                     </div>
 
@@ -60,7 +61,7 @@ const TaskCard = ({task, handleEdit}) => {
                 <div className="mt-3">
                     <Button
                         variant="warning"
-                        className="w-100"
+                        className="w-25"
                         onClick={() => handleEdit(task.id)}
                     >
                         ✏️ Edit

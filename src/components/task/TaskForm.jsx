@@ -75,17 +75,6 @@ const TaskForm = () => {
                         {...register('description')}
                     />
                 </Form.Group>
-                <Form.Group className="mb-3 w-50">
-                    <Form.Label>Status</Form.Label>
-                    <Form.Select {...register('status')}>
-                        <option value="">Select Status</option>
-                        <option value="todo">To Do</option>
-                        <option value="in-progress">In Progress</option>
-                        <option value="cancelled">Cancelled</option>
-                        <option value="on-hold">On Hold</option>
-                        <option value="done">Done</option>
-                    </Form.Select>
-                </Form.Group>
                 <Form.Group className="mb-3 ">
                     <Form.Label>Due Date</Form.Label>
                     <Controller

@@ -2,7 +2,6 @@
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import { Container, Row, Col } from 'react-bootstrap';
-// import RouteSpinner from '../RouteSpinner/RouteSpinner.jsx'; // Adjust path
 
 const MainLayout = ({ children }) => {
     return (
