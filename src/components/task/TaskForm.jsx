@@ -3,20 +3,28 @@
 
 
 import React from 'react';
-import { useForm, useFieldArray, Controller } from 'react-hook-form';
-import { Form, Button, Row, Col, Container} from 'react-bootstrap';
+import {useForm, useFieldArray, Controller} from 'react-hook-form';
+import {Form, Button, Row, Col, Container, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
-import { useTasks } from '../../context/TaskContext';
-import { useNavigate } from 'react-router-dom';
+import {useTasks} from '../../context/TaskContext';
+import {useNavigate} from 'react-router-dom';
+// import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import {useTheme} from "@/Context/ThemeContext.jsx";
+const tagColors = ['#F87171', '#FBBF24', '#34D399', '#60A5FA', '#A78BFA'];
+const tagLabels = {
+    '#F87171': 'Cancelled',
+    '#FBBF24': 'To Do',
+    '#34D399': 'Done',
+    '#60A5FA': 'In Progress',
+    '#A78BFA': 'On Hold',
+};
+import {motion, AnimatePresence} from 'framer-motion';
+// import {useTheme} from "@/Context/ThemeContext.jsx";
 
 const priorities = ['Low', 'Medium', 'High'];
-const tagColors = ['#F87171', '#FBBF24', '#34D399', '#60A5FA', '#A78BFA'];
 
 const TaskForm = () => {
-    const { register, control, handleSubmit, setValue, watch, formState: { errors },reset  } = useForm({
+    const {register, control, handleSubmit, setValue, watch, formState: {errors}, reset} = useForm({
         defaultValues: {
             title: '',
             description: '',
@@ -27,12 +35,12 @@ const TaskForm = () => {
         }
     });
 
-    const { fields, append, remove } = useFieldArray({
+    const {fields, append, remove} = useFieldArray({
         control,
         name: 'subtasks'
     });
 
-    const { addTask } = useTasks();
+    const {addTask} = useTasks();
     const navigate = useNavigate();
     const tag = watch('tag');
 
@@ -58,7 +66,7 @@ const TaskForm = () => {
                     <Form.Control
                         type="text"
                         placeholder="Enter task title"
-                        {...register('title', { required: 'Task title is required' })}
+                        {...register('title', {required: 'Task title is required'})}
                         isInvalid={!!errors.title}
                     />
                     <Form.Control.Feedback type="invalid">
@@ -80,7 +88,7 @@ const TaskForm = () => {
                     <Controller
                         control={control}
                         name="dueDate"
-                        render={({ field }) => (
+                        render={({field}) => (
                             <DatePicker
                                 className="form-control"
                                 placeholderText="Select due date"
@@ -96,7 +104,7 @@ const TaskForm = () => {
 
                 <Row className="mb-3 ">
                     <Col>
-                        <Form.Group >
+                        <Form.Group>
                             <Form.Label>Priority</Form.Label>
                             <Form.Select {...register('priority')}>
                                 <option value="">Select priority</option>
@@ -109,12 +117,20 @@ const TaskForm = () => {
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Form.Group>
-                            <Form.Label>Color Tag</Form.Label>
-                            <div className="d-flex gap-2">
-                                {tagColors.map((color) => (
+                    <Form.Group className="mb-3">
+                        <Form.Label>Tag Color</Form.Label>
+                        <div className="d-flex gap-2">
+                            {tagColors.map((color) => (
+                                <OverlayTrigger
+                                    key={color}
+                                    placement="top"
+                                    overlay={
+                                        <Tooltip id={`tooltip-${color}`}>
+                                            {tagLabels[color]}
+                                        </Tooltip>
+                                    }
+                                >
                                     <div
-                                        key={color}
                                         onClick={() => setValue('tag', color)}
                                         style={{
                                             backgroundColor: color,
@@ -122,58 +138,60 @@ const TaskForm = () => {
                                             height: 24,
                                             borderRadius: '50%',
                                             cursor: 'pointer',
-                                            border: tag === color ? '2px solid #000' : '1px solid #ccc'
+                                            border: tag === color ? '2px solid #000' : '1px solid #ccc',
                                         }}
                                     />
-                                ))}
-                            </div>
-                        </Form.Group>
-                    </Col>
-                </Row>
+                                </OverlayTrigger>
+                            ))}
+                        </div>
+                    </Form.Group>
+                </Col>
+            </Row>
 
-                {/*<Form.Label>Subtasks</Form.Label>*/}
-                <AnimatePresence>
-                    {fields.map((field, index) => (
-                        <motion.div
-                            key={field.id}
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                        >
-                            <Row className="mb-2">
-                                <Col xs={10}>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder={`Subtask #${index + 1}`}
-                                        {...register(`subtasks.${index}`)}
-                                    />
-                                </Col>
-                                <Col xs={2}>
-                                    <Button
-                                        variant="outline-danger"
-                                        onClick={() => remove(index)} // Properly remove the subtask by index
-                                    >
-                                        ❌
-                                    </Button>
-                                </Col>
-                            </Row>
-                        </motion.div>
-                    ))}
-                </AnimatePresence>
+            {/*<Form.Label>Subtasks</Form.Label>*/}
+            <AnimatePresence>
+                {fields.map((field, index) => (
+                    <motion.div
+                        key={field.id}
+                        initial={{opacity: 0, y: -10}}
+                        animate={{opacity: 1, y: 0}}
+                        exit={{opacity: 0, y: -10}}
+                    >
+                        <Row className="mb-2">
+                            <Col xs={10}>
+                                <Form.Control
+                                    type="text"
+                                    placeholder={`Subtask #${index + 1}`}
+                                    {...register(`subtasks.${index}`)}
+                                />
+                            </Col>
+                            <Col xs={2}>
+                                <Button
+                                    variant="outline-danger"
+                                    onClick={() => remove(index)} // Properly remove the subtask by index
+                                >
+                                    ❌
+                                </Button>
+                            </Col>
+                        </Row>
+                    </motion.div>
+                ))}
+            </AnimatePresence>
 
 
-                <Button variant="warning" onClick={() => append('')} className="mb-3">
-                    ➕ Add Subtask
+            <Button variant="warning" onClick={() => append('')} className="mb-3">
+                ➕ Add Subtask
+            </Button>
+
+            <div>
+                <Button type="submit" variant="success">
+                    ✅ Create Task
                 </Button>
-
-                <div>
-                    <Button type="submit" variant="success">
-                        ✅ Create Task
-                    </Button>
-                </div>
-            </Form>
-        </Container>
-    );
+            </div>
+        </Form>
+</Container>
+)
+    ;
 };
 
 export default TaskForm;

@@ -4,8 +4,16 @@ import { Modal, Button, Form, Row, Col, InputGroup } from 'react-bootstrap';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useTasks } from '../../context/TaskContext';
 import { useTheme } from '../../context/ThemeContext'; // Adjust the path if needed
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const tagColors = ['#F87171', '#FBBF24', '#34D399', '#60A5FA', '#A78BFA'];
+const tagLabels = {
+    '#F87171': 'Cancelled',
+    '#FBBF24': 'To Do',
+    '#34D399': 'Done',
+    '#60A5FA': 'In Progress',
+    '#A78BFA': 'On Hold',
+};
 
 const TaskFormModal = ({ show, handleClose, taskId }) => {
     const { tasks, updateTask } = useTasks();
@@ -126,21 +134,32 @@ const TaskFormModal = ({ show, handleClose, taskId }) => {
                         <Form.Label>Tag Color</Form.Label>
                         <div className="d-flex gap-2">
                             {tagColors.map((color) => (
-                                <div
+                                <OverlayTrigger
                                     key={color}
-                                    onClick={() => setValue('tag', color)}
-                                    style={{
-                                        backgroundColor: color,
-                                        width: 24,
-                                        height: 24,
-                                        borderRadius: '50%',
-                                        cursor: 'pointer',
-                                        border: tag === color ? '2px solid #000' : '1px solid #ccc',
-                                    }}
-                                />
+                                    placement="top"
+                                    overlay={
+                                        <Tooltip id={`tooltip-${color}`}>
+                                            {tagLabels[color]}
+                                        </Tooltip>
+                                    }
+                                >
+                                    <div
+                                        onClick={() => setValue('tag', color)}
+                                        style={{
+                                            backgroundColor: color,
+                                            width: 24,
+                                            height: 24,
+                                            borderRadius: '50%',
+                                            cursor: 'pointer',
+                                            border: tag === color ? '2px solid #000' : '1px solid #ccc',
+                                        }}
+                                    />
+                                </OverlayTrigger>
                             ))}
                         </div>
                     </Form.Group>
+
+                    {/*</Form.Group>*/}
 
                     <div className="mb-3">
                         <Form.Label>Subtasks</Form.Label>
