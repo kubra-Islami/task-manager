@@ -8,20 +8,35 @@
     --border-color: #dee2e6;
     --hover-bg: #e9ecef;
     --shadow-color: rgba(0, 0, 0, 0.05);
+
+
+    /*--primary-color: #007bff;*/
+    --danger-color: #dc3545;
+    --header-bg: #343a40;
+    /*--card-bg: #212529;*/
+    /*--text-color: #f8f9fa;*/
+    /*--border-color: #3a3f44;*/
+    /*--hover-bg: #495057;*/
+
+}
+[data-theme='dark'] {
+    --bg-color: #242526; /* Dark background */
+    --card-bg: #272822;  /* Lighter card background */
+    --primary-color: #0fc6c6;
+    --secondary-color: #a5a8ad;
+    --text-color: #e0e0e0; /* Light text */
+    --muted-text: #b0b3b8;
+    --border-color: #585858;
+    --hover-bg: #60666e;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    /*--card-bg: #212529;*/
+    /*--text-color: #f8f9fa;*/
+    /*--border-color: #444;*/
+    --header-bg: #343a40;
+    /*--hover-bg: #495057;*/
+
 }
 
-[data-theme='dark'] {
-    --bg-color: #242526; /* Lighter dark background */
-    --card-bg: #272822;  /* Even lighter card background */
-    --primary-color: #0fc6c6; /* Retaining primary color */
-    /*--primary-color: #60a5fa;*/
-    --secondary-color: #a5a8ad; /* Much lighter secondary color */
-    --text-color: #e0e0e0; /* Lighter text for more contrast */
-    --muted-text: #b0b3b8; /* Softer muted text color */
-    --border-color: #585858; /* Subtle border color */
-    --hover-bg: #60666e; /* Slightly lighter hover background */
-    --shadow-color: rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-}
 [data-theme='dark'] input,
 [data-theme='dark'] textarea,
 [data-theme='dark'] select,

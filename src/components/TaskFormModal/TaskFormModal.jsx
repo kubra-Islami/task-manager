@@ -20,7 +20,6 @@ const TaskFormModal = ({ show, handleClose, taskId }) => {
     const task = tasks.find((t) => t.id === taskId);
     const { theme } = useTheme(); // 'light' or 'dark'
 
-
     const formatDate = (dateStr) => {
         if (!dateStr) return '';
         const date = new Date(dateStr);
