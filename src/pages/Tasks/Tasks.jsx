@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Container, Table, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import {Container, Button, Pagination } from 'react-bootstrap';
 import {useTasks} from '../../context/TaskContext';
 import MainLayout from '../../components/layout/MainLayout';
 import TaskFilter from '@/components/task/TaskFilters';
@@ -13,11 +13,10 @@ import {
 } from '@dnd-kit/core';
 import {
     SortableContext,
-    useSortable,
     arrayMove,
     verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import {CSS} from '@dnd-kit/utilities';
 import "./tasks.css";
 import SortableTasks from "@/components/task/SortableTasks.jsx";
 
@@ -27,8 +26,17 @@ const Tasks = () => {
     const [activeFilter, setActiveFilter] = useState({});
     const [showModal, setShowModal] = useState(false);
     const [selectedTaskId, setSelectedTaskId] = useState(null);
+     // pagination states
+    const [currentPage, setCurrentPage] = useState(1);
+    const tasksPerPage = 5; // or whatever number you prefer
 
+    // Calculate paginated tasks
+    const indexOfLastTask = currentPage * tasksPerPage;
+    const indexOfFirstTask = indexOfLastTask - tasksPerPage;
+    const currentTasks = filteredTasks.slice(indexOfFirstTask, indexOfLastTask);
+    const totalPages = Math.ceil(filteredTasks.length / tasksPerPage);
     const sensors = useSensors(useSensor(PointerSensor));
+
 
     useEffect(() => {
         applyFilter(activeFilter);
@@ -83,10 +91,55 @@ const Tasks = () => {
         }
     }, [selectedTaskId]);
 
+    //  pagination method
+    const renderPagination = () => {
+        let items = [];
+
+        for (let number = 1; number <= totalPages; number++) {
+            items.push(
+                <Pagination.Item
+                    key={number}
+                    active={number === currentPage}
+                    onClick={() => setCurrentPage(number)}
+                    className="mx-0"
+                >
+                    {number}
+                </Pagination.Item>
+            );
+        }
+
+        return (
+            <div className="pagin d-flex justify-content-center mt-4">
+                <Pagination className="mb-0 shadow-sm rounded-pill px-2">
+                    <Pagination.First
+                        onClick={() => setCurrentPage(1)}
+                        disabled={currentPage === 1}
+                    />
+                    <Pagination.Prev
+                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                    />
+
+                    {items}
+
+                    <Pagination.Next
+                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                        disabled={currentPage === totalPages}
+                    />
+                    <Pagination.Last
+                        onClick={() => setCurrentPage(totalPages)}
+                        disabled={currentPage === totalPages}
+                    />
+                </Pagination>
+            </div>
+        );
+    };
+
     return (
         <MainLayout>
             <Container className="py-4">
                 <h2 className="mb-4">📋 My Tasks</h2>
+
 
                 <TaskFilter onFilterChange={applyFilter}/>
 
@@ -118,14 +171,15 @@ const Tasks = () => {
                                     <div className="table-cell">Actions</div>
                                 </div>
 
-                                {filteredTasks.map((task, index) => (
+                                {currentTasks.map((task, index) => (
                                     <SortableTasks
                                         key={task.id}
                                         id={task.id}
                                         task={task}
-                                        index={index}
+                                        index={indexOfFirstTask + index}
                                         handleEdit={handleEdit}
-                                        handleDelete={() => {}}
+                                        handleDelete={() => {
+                                        }}
                                     />
                                 ))}
                             </div>
@@ -141,7 +195,10 @@ const Tasks = () => {
                         taskId={selectedTaskId}
                     />
                 )}
+
+
             </Container>
+            {filteredTasks.length > 0 && renderPagination()}
         </MainLayout>
     );
 };

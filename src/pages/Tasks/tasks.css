@@ -52,12 +52,14 @@
     background-color: var(--primary-color);
     color: white;
 }
+
 .custom-table .subtask-column {
     max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 .custom-table .btn-outline-danger {
     border-color: var(--danger-color);
     color: var(--danger-color);
@@ -92,9 +94,11 @@
     cursor: pointer;
     transition: transform 0.2s ease;
 }
+
 .custom-table td {
     word-wrap: break-word; /* Allow words to break and wrap inside the cell */
 }
+
 .custom-table .tag-bubble:hover {
     transform: scale(1.1);
 }
@@ -111,7 +115,7 @@
     border-radius: 6px;
     overflow: hidden;
     font-size: 0.95rem;
-    --text-color:var(--card-bg)
+    --text-color: var(--card-bg)
 }
 
 [data-theme='dark'] .table-row {
@@ -129,13 +133,16 @@
     padding: 0.5rem 0.75rem;
     background-color: var(--card-bg) !important
 }
+
 .table-row:last-child {
     border-bottom: none;
 }
+
 .table-row:first-child {
     background-color: var(--hover-bg) !important;
 
 }
+
 .table-header {
     background-color: var(--hover-bg) !important;
     /*background-color: #f1f3f5;*/
@@ -166,4 +173,90 @@
     display: flex;
     justify-content: center;
     gap: 0.25rem;
+}
+
+
+/* PAGINATION STYLES */
+
+.pagination {
+    list-style: none;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+[data-theme='light'] .pagination {
+    background-color: transparent !important;
+}
+
+.pagin.justify-content-center {
+    background-color: transparent !important;
+}
+
+.pagination {
+    background-color: transparent !important;
+}
+
+.pagination .page-item {
+    background-color: transparent !important;
+}
+
+.pagination .page-item .page-link {
+    border-radius: 50%;
+    margin: 0 2px;
+    /*padding: 10px;*/
+    transition: all 0.3s;
+}
+
+/* Common active page style*/
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: white;
+}
+
+/* Dark theme pagination styles*/
+[data-theme='dark'] .pagination {
+    --bs-pagination-color: #444;
+    --bs-pagination-active-bg: var(--primary-color) !important;
+    --bs-pagination-active-border-color: var(--primary-color) !important;
+    --bs-pagination-focus-color: var(--primary-color) !important;
+    --bs-pagination-hover-color: var(--primary-color) !important;
+}
+
+/* ✅ Light theme pagination styles*/
+[data-theme='light'] .pagination {
+    --bs-pagination-color: #343a40;
+    --bs-pagination-hover-color: var(--primary-color);
+    --bs-pagination-focus-color: var(--primary-color);
+    --bs-pagination-active-bg: var(--primary-color);
+    --bs-pagination-active-border-color: var(--primary-color);
+}
+
+[data-theme='light'] .page-link:hover {
+    color: #444 !important;
+}
+
+[data-theme='light'] .disabled > .page-link, .page-link.disabled {
+    color: #444;
+    background-color: transparent !important;
+    /*border: 1px solid var(--primary-color)!important;*/
+    /*background-color: #e6e6e6 !important;*/
+}
+
+[data-theme='light'] .page-link {
+    color: #444 !important;
+    /*border: 1px solid var(--primary-color)!important;*/
+    background-color: transparent !important;
+    border: none !important;
+}
+
+[data-theme='dark'] .page-link.active {
+    color: var(--primary-color) !important;
+}
+
+.page-link {
+    /*background-color: transparent !important;*/
+    /*border: none !important; // optional: if you want no borders*/
 }
