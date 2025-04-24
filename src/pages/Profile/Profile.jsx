@@ -5,8 +5,8 @@ import { useTasks } from '../../context/TaskContext';
 import { useUser } from '@/Context/UserContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import './Profile.css';
-import TaskCard from "@/components/task/TaskCard.jsx";
-import RecentTasks from "@/components/task/RecentTasks.jsx";
+import TaskCard from "@/components/task/TaskCard/TaskCard.jsx";
+import RecentTasks from "@/components/task/RecentTasks/RecentTasks.jsx";
 
 const Profile = () => {
     const { tasks } = useTasks();

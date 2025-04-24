@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Container, Button, Pagination } from 'react-bootstrap';
 import {useTasks} from '../../context/TaskContext';
 import MainLayout from '../../components/layout/MainLayout';
-import TaskFilter from '@/components/task/TaskFilters';
+import TaskFilter from '@/components/task/TaskFilters/TaskFilters.jsx';
 import TaskFormModal from '@/components/TaskFormModal/TaskFormModal';
 import {
     DndContext,
@@ -18,7 +18,8 @@ import {
 } from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
 import "./tasks.css";
-import SortableTasks from "@/components/task/SortableTasks.jsx";
+import SortableTasks from "@/components/task/SortableTasks/SortableTasks.jsx";
+import RenderPagination from "@/components/task/Pagination/RenderPagination.jsx";
 
 const Tasks = () => {
     const {tasks, setTasks} = useTasks();
@@ -29,12 +30,12 @@ const Tasks = () => {
      // pagination states
     const [currentPage, setCurrentPage] = useState(1);
     const tasksPerPage = 5; // or whatever number you prefer
+    const totalPages = Math.ceil(filteredTasks.length / tasksPerPage);
 
     // Calculate paginated tasks
     const indexOfLastTask = currentPage * tasksPerPage;
     const indexOfFirstTask = indexOfLastTask - tasksPerPage;
     const currentTasks = filteredTasks.slice(indexOfFirstTask, indexOfLastTask);
-    const totalPages = Math.ceil(filteredTasks.length / tasksPerPage);
     const sensors = useSensors(useSensor(PointerSensor));
 
 
@@ -91,49 +92,7 @@ const Tasks = () => {
         }
     }, [selectedTaskId]);
 
-    //  pagination method
-    const renderPagination = () => {
-        let items = [];
 
-        for (let number = 1; number <= totalPages; number++) {
-            items.push(
-                <Pagination.Item
-                    key={number}
-                    active={number === currentPage}
-                    onClick={() => setCurrentPage(number)}
-                    className="mx-0"
-                >
-                    {number}
-                </Pagination.Item>
-            );
-        }
-
-        return (
-            <div className="pagin d-flex justify-content-center mt-4">
-                <Pagination className="mb-0 shadow-sm rounded-pill px-2">
-                    <Pagination.First
-                        onClick={() => setCurrentPage(1)}
-                        disabled={currentPage === 1}
-                    />
-                    <Pagination.Prev
-                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                        disabled={currentPage === 1}
-                    />
-
-                    {items}
-
-                    <Pagination.Next
-                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                        disabled={currentPage === totalPages}
-                    />
-                    <Pagination.Last
-                        onClick={() => setCurrentPage(totalPages)}
-                        disabled={currentPage === totalPages}
-                    />
-                </Pagination>
-            </div>
-        );
-    };
 
     return (
         <MainLayout>
@@ -198,7 +157,13 @@ const Tasks = () => {
 
 
             </Container>
-            {filteredTasks.length > 0 && renderPagination()}
+            {filteredTasks.length > 0 && (
+                <RenderPagination
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    totalPages={totalPages}
+                />
+            )}
         </MainLayout>
     );
 };

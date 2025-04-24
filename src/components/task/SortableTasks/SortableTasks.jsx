@@ -3,6 +3,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { format } from 'date-fns';
+import {Link} from "react-router-dom";
 
 const tagLabels = {
     "#ff0000": "Urgent",
@@ -94,19 +95,19 @@ const SortableTasks = ({ id, task, handleEdit, handleDelete, index }) => {
                 </OverlayTrigger>
             </div>
             <div className="table-cell">
+                {/*<Button*/}
+                {/*    size="sm"*/}
+                {/*    variant="outline-primary mx-1"*/}
+                {/*    onClick={() => handleEdit(task.id)} // Edit button remains unaffected*/}
+                {/*>*/}
+                {/*    Edit*/}
+                {/*</Button>*/}
                 <Button
                     size="sm"
-                    variant="outline-primary mx-1"
-                    onClick={() => handleEdit(task.id)} // Edit button remains unaffected
-                >
-                    Edit
-                </Button>
-                <Button
-                    size="sm"
-                    variant="outline-danger mx-1"
+                    className='btn btn-primary'
                     onClick={() => handleDelete(task.id)} // Delete button remains unaffected
                 >
-                    Delete
+                    <Link to="/task:id">View</Link>
                 </Button>
             </div>
         </div>

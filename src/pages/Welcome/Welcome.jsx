@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import MainLayout from '../../components/layout/MainLayout'
-import TaskForm from '../../components/task/TaskForm'
+import TaskForm from '../../components/task/TaskForm/TaskForm.jsx'
 import {Container} from "react-bootstrap";
 
 const Welcome = () => {

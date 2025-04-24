@@ -6,7 +6,7 @@ import React from 'react';
 import {useForm, useFieldArray, Controller} from 'react-hook-form';
 import {Form, Button, Row, Col, Container, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
-import {useTasks} from '../../context/TaskContext';
+import {useTasks} from '../../../Context/TaskContext.jsx';
 import {useNavigate} from 'react-router-dom';
 // import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
@@ -19,8 +19,6 @@ const tagLabels = {
     '#A78BFA': 'On Hold',
 };
 import {motion, AnimatePresence} from 'framer-motion';
-// import {useTheme} from "@/Context/ThemeContext.jsx";
-
 const priorities = ['Low', 'Medium', 'High'];
 
 const TaskForm = () => {
