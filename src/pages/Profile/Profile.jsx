@@ -17,20 +17,8 @@ const Profile = () => {
         console.log('📦 Tasks Updated:', tasks.map(t => ({ id: t.id, title: t.title, status: t.status })));
     }, [tasks]);
 
-    const groupedTasks = {
-        'on-hold': tasks.filter(task => task.status.toLowerCase() === 'on-hold'),
-        cancelled: tasks.filter(task => task.status.toLowerCase() === 'cancelled'),
-        todo: tasks.filter(task => task.status.toLowerCase() === 'todo'),
-        'in-progress': tasks.filter(task => task.status.toLowerCase() === 'in-progress'),
-        done: tasks.filter(task => task.status.toLowerCase() === 'done'),
-    };
-
     const handleEditProfile = () => {
         navigate('/edit-profile'); // Or open a modal instead
-    };
-
-    const handleEditTask = (taskId) => {
-        navigate(`/tasks/edit/${taskId}`);
     };
 
     return (
@@ -49,7 +37,7 @@ const Profile = () => {
                         />
                     </Col>
                     <Col xs={12} md={8}
-                         className="text-center text-md-start mb-3 mb-md-0 d-flex flex-column justify-content-center align-items-center">
+                        className="text-center text-md-start mb-3 mb-md-0 d-flex flex-column justify-content-center align-items-center">
                         <h4 className="fw-bold">{user.name}</h4>
                         <p className="mb-2">{user.email}</p>
                         <Button variant="outline-primary" size="sm" onClick={handleEditProfile}>

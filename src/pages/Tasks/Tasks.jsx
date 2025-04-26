@@ -25,7 +25,6 @@ const Tasks = () => {
     const {tasks, setTasks} = useTasks();
     const [filteredTasks, setFilteredTasks] = useState(tasks);
     const [activeFilter, setActiveFilter] = useState({});
-    const [showModal, setShowModal] = useState(false);
     const [selectedTaskId, setSelectedTaskId] = useState(null);
      // pagination states
     const [currentPage, setCurrentPage] = useState(1);
@@ -58,18 +57,6 @@ const Tasks = () => {
 
         setActiveFilter(filter);
         setFilteredTasks(filtered);
-    };
-
-    const handleEdit = (taskId) => {
-        console.log("Editing Task ID:", taskId);
-        setSelectedTaskId(taskId);
-        setShowModal(true);
-    };
-
-
-    const handleCloseModal = () => {
-        setShowModal(false);
-        setSelectedTaskId(null); // Reset the selected task when closing the modal
     };
 
     const handleDragEnd = ({active, over}) => {
@@ -126,7 +113,6 @@ const Tasks = () => {
                                     <div className="table-cell">Priority</div>
                                     <div className="table-cell">Due Date</div>
                                     <div className="table-cell">SubTasks</div>
-                                    <div className="table-cell">Tag</div>
                                     <div className="table-cell">Actions</div>
                                 </div>
 
@@ -136,9 +122,6 @@ const Tasks = () => {
                                         id={task.id}
                                         task={task}
                                         index={indexOfFirstTask + index}
-                                        handleEdit={handleEdit}
-                                        handleDelete={() => {
-                                        }}
                                     />
                                 ))}
                             </div>
@@ -146,16 +129,6 @@ const Tasks = () => {
                         </SortableContext>
                     </DndContext>
                 )}
-
-                {showModal && (
-                    <TaskFormModal
-                        show={showModal}
-                        handleClose={handleCloseModal}
-                        taskId={selectedTaskId}
-                    />
-                )}
-
-
             </Container>
             {filteredTasks.length > 0 && (
                 <RenderPagination

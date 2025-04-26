@@ -115,34 +115,34 @@ const TaskForm = () => {
                         </Form.Group>
                     </Col>
                     <Col>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Tag Color</Form.Label>
-                        <div className="d-flex gap-2">
-                            {tagColors.map((color) => (
-                                <OverlayTrigger
-                                    key={color}
-                                    placement="top"
-                                    overlay={
-                                        <Tooltip id={`tooltip-${color}`}>
-                                            {tagLabels[color]}
-                                        </Tooltip>
-                                    }
-                                >
-                                    <div
-                                        onClick={() => setValue('tag', color)}
-                                        style={{
-                                            backgroundColor: color,
-                                            width: 24,
-                                            height: 24,
-                                            borderRadius: '50%',
-                                            cursor: 'pointer',
-                                            border: tag === color ? '2px solid #000' : '1px solid #ccc',
-                                        }}
-                                    />
-                                </OverlayTrigger>
-                            ))}
-                        </div>
-                    </Form.Group>
+                    {/*<Form.Group className="mb-3">*/}
+                    {/*    <Form.Label>Tag Color</Form.Label>*/}
+                    {/*    <div className="d-flex gap-2">*/}
+                    {/*        {tagColors.map((color) => (*/}
+                    {/*            <OverlayTrigger*/}
+                    {/*                key={color}*/}
+                    {/*                placement="top"*/}
+                    {/*                overlay={*/}
+                    {/*                    <Tooltip id={`tooltip-${color}`}>*/}
+                    {/*                        {tagLabels[color]}*/}
+                    {/*                    </Tooltip>*/}
+                    {/*                }*/}
+                    {/*            >*/}
+                    {/*                <div*/}
+                    {/*                    onClick={() => setValue('tag', color)}*/}
+                    {/*                    style={{*/}
+                    {/*                        backgroundColor: color,*/}
+                    {/*                        width: 24,*/}
+                    {/*                        height: 24,*/}
+                    {/*                        borderRadius: '50%',*/}
+                    {/*                        cursor: 'pointer',*/}
+                    {/*                        border: tag === color ? '2px solid #000' : '1px solid #ccc',*/}
+                    {/*                    }}*/}
+                    {/*                />*/}
+                    {/*            </OverlayTrigger>*/}
+                    {/*        ))}*/}
+                    {/*    </div>*/}
+                    {/*</Form.Group>*/}
                 </Col>
             </Row>
 

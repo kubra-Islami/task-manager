@@ -291,7 +291,7 @@ a, .sidebar-link {
     color: var(--primary-color);
 }
 button, .btn {
-    background-color: var(--primary-color);
+    /*background-color: var(--primary-color);*/
     color: #fff;
     border: none;
 }

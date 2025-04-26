@@ -21,7 +21,7 @@ const statusTagColors = {
     "on-hold": "#8B5CF6FF",
 };
 
-const SortableTasks = ({ id, task, handleEdit, handleDelete, index }) => {
+const SortableTasks = ({ id, task, index }) => {
     const {
         attributes,
         listeners,
@@ -74,41 +74,13 @@ const SortableTasks = ({ id, task, handleEdit, handleDelete, index }) => {
             <div className="table-cell">{task.dueDate ? format(new Date(task.dueDate), 'yyyy-MM-dd') : 'No due date'}</div>
             <div className="table-cell">{truncateSubtasks(task.subtasks)}</div>
             <div className="table-cell">
-                <OverlayTrigger
-                    placement="top"
-                    overlay={
-                        <Tooltip id={`tooltip-${task.tag}`}>
-                            {tagLabels[task.tag]}
-                        </Tooltip>
-                    }
+                <Link
+                    to={`/tasks/${task.id}`}
+                    state={{ task }}
+                    className="btn btn-primary btn-sm text-white text-decoration-none mx-1"
                 >
-                    <div
-                        style={{
-                            backgroundColor: tagColor,
-                            width: 24,
-                            height: 24,
-                            borderRadius: "50%",
-                            margin: "auto",
-                            border: "1px solid #ccc",
-                        }}
-                    />
-                </OverlayTrigger>
-            </div>
-            <div className="table-cell">
-                {/*<Button*/}
-                {/*    size="sm"*/}
-                {/*    variant="outline-primary mx-1"*/}
-                {/*    onClick={() => handleEdit(task.id)} // Edit button remains unaffected*/}
-                {/*>*/}
-                {/*    Edit*/}
-                {/*</Button>*/}
-                <Button
-                    size="sm"
-                    className='btn btn-primary'
-                    onClick={() => handleDelete(task.id)} // Delete button remains unaffected
-                >
-                    <Link to="/task:id">View</Link>
-                </Button>
+                    View
+                </Link>
             </div>
         </div>
     );
