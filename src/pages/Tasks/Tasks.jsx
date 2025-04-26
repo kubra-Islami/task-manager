@@ -3,7 +3,6 @@ import {Container, Button, Pagination } from 'react-bootstrap';
 import {useTasks} from '../../context/TaskContext';
 import MainLayout from '../../components/layout/MainLayout';
 import TaskFilter from '@/components/task/TaskFilters/TaskFilters.jsx';
-import TaskFormModal from '@/components/TaskFormModal/TaskFormModal';
 import {
     DndContext,
     closestCenter,
@@ -36,7 +35,6 @@ const Tasks = () => {
     const indexOfFirstTask = indexOfLastTask - tasksPerPage;
     const currentTasks = filteredTasks.slice(indexOfFirstTask, indexOfLastTask);
     const sensors = useSensors(useSensor(PointerSensor));
-
 
     useEffect(() => {
         applyFilter(activeFilter);

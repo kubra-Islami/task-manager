@@ -4,6 +4,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { format } from 'date-fns';
 import {Link} from "react-router-dom";
+import {BsCheckCircleFill, BsClockHistory, BsExclamationCircleFill} from "react-icons/bs";
 
 const tagLabels = {
     "#ff0000": "Urgent",
@@ -13,13 +14,23 @@ const tagLabels = {
     "#800080": "Purple Tag",
 };
 
-const statusTagColors = {
-    Cancelled: "#EF4444FF",
-    "In Progress": "#3B82F6FF",
-    Completed: "#10B981FF",
-    todo: "#FBBF24FF",
-    "on-hold": "#8B5CF6FF",
+const getStatusBadgeClass = (status) => {
+    switch (status) {
+        case 'todo':
+            return 'status-badge todo';
+        case 'in-progress':
+            return 'status-badge in-progress';
+        case 'cancelled':
+            return 'status-badge cancelled';
+        case 'On-Hold':
+            return 'status-badge on-hold';
+        case 'done':
+            return 'status-badge done';
+        default:
+            return 'status-badge';
+    }
 };
+
 
 const SortableTasks = ({ id, task, index }) => {
     const {
@@ -33,8 +44,6 @@ const SortableTasks = ({ id, task, index }) => {
         id,
         disabled: false,
     });
-
-    const tagColor = statusTagColors[task.status] || task.tag;
 
     const style = {
         transform: CSS.Transform.toString(transform),
@@ -69,7 +78,11 @@ const SortableTasks = ({ id, task, index }) => {
             <div className="table-cell">{index + 1}</div>
             <div className="table-cell">{task.title}</div>
             <div className="table-cell">{task.description}</div>
-            <div className="table-cell">{task.status}</div>
+            <div className="table-cell">
+                    <span className={getStatusBadgeClass(task.status)}>
+                                    {task.status.replace('-', ' ')}
+                    </span>
+            </div>
             <div className="table-cell">{task.priority}</div>
             <div className="table-cell">{task.dueDate ? format(new Date(task.dueDate), 'yyyy-MM-dd') : 'No due date'}</div>
             <div className="table-cell">{truncateSubtasks(task.subtasks)}</div>

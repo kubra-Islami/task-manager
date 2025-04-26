@@ -1,24 +1,14 @@
 // src/components/TaskFormModal.jsx
-import React, { useEffect } from 'react';
-import { Modal, Button, Form, Row, Col, InputGroup } from 'react-bootstrap';
-import { useForm, useFieldArray } from 'react-hook-form';
-import { useTasks } from '../../context/TaskContext';
-import { useTheme } from '../../context/ThemeContext'; // Adjust the path if needed
-import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import React, {useEffect} from 'react';
+import {Modal, Button, Form, Row, Col, InputGroup} from 'react-bootstrap';
+import {useForm, useFieldArray} from 'react-hook-form';
+import {useTasks} from '../../context/TaskContext';
+import {useTheme} from '../../context/ThemeContext'; // Adjust the path if needed
 
-const tagColors = ['#F87171', '#FBBF24', '#34D399', '#60A5FA', '#A78BFA'];
-const tagLabels = {
-    '#F87171': 'Cancelled',
-    '#FBBF24': 'To Do',
-    '#34D399': 'Done',
-    '#60A5FA': 'In Progress',
-    '#A78BFA': 'On Hold',
-};
-
-const TaskFormModal = ({ show, handleClose, taskId }) => {
-    const { tasks, updateTask } = useTasks();
+const TaskFormModal = ({show, handleClose, taskId}) => {
+    const {tasks, updateTask} = useTasks();
     const task = tasks.find((t) => t.id === taskId);
-    const { theme } = useTheme(); // 'light' or 'dark'
+    const {theme} = useTheme(); // 'light' or 'dark'
 
     const formatDate = (dateStr) => {
         if (!dateStr) return '';
@@ -48,7 +38,7 @@ const TaskFormModal = ({ show, handleClose, taskId }) => {
         },
     });
 
-    const { fields, append, remove } = useFieldArray({
+    const {fields, append, remove} = useFieldArray({
         control,
         name: 'subtasks',
     });
@@ -69,7 +59,7 @@ const TaskFormModal = ({ show, handleClose, taskId }) => {
                 ...task,
                 dueDate: task.dueDate ? formatToDateInput(task.dueDate) : '',
                 subtasks: task.subtasks?.map((sub) =>
-                    typeof sub === 'string' ? { text: sub } : sub
+                    typeof sub === 'string' ? {text: sub} : sub
                 ) || [],
             };
 
@@ -87,12 +77,12 @@ const TaskFormModal = ({ show, handleClose, taskId }) => {
         updateTask(updated);
         handleClose();
     };
-
+    const priorities = ['Low', 'Medium', 'High'];
     return (
         <Modal show={show}
-                 onHide={handleClose}
-                 centered
-                 dialogClassName={theme === 'dark' ? 'modal-dark' : 'modal-light'}
+               onHide={handleClose}
+               centered
+               dialogClassName={theme === 'dark' ? 'modal-dark' : 'modal-light'}
         >
             <Modal.Header closeButton className={theme === 'dark' ? 'bg-dark text-white' : ''}>
                 <Modal.Title>Edit Task</Modal.Title>
@@ -101,7 +91,7 @@ const TaskFormModal = ({ show, handleClose, taskId }) => {
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <Form.Group className="mb-3">
                         <Form.Label>Title</Form.Label>
-                        <Form.Control {...register('title', { required: true })} />
+                        <Form.Control {...register('title', {required: true})} />
                     </Form.Group>
 
                     <Form.Group className="mb-3">
@@ -129,6 +119,18 @@ const TaskFormModal = ({ show, handleClose, taskId }) => {
                         </Form.Select>
                     </Form.Group>
 
+                    <Form.Group>
+                        <Form.Label>Priority</Form.Label>
+                        <Form.Select {...register('priority')}>
+                            <option value="">Select priority</option>
+                            {priorities.map((p) => (
+                                <option key={p} value={p}>
+                                    {p}
+                                </option>
+                            ))}
+                        </Form.Select>
+                    </Form.Group>
+
                     <div className="mb-3">
                         <Form.Label>Subtasks</Form.Label>
                         {fields.map((field, index) => (
@@ -145,7 +147,7 @@ const TaskFormModal = ({ show, handleClose, taskId }) => {
                         <Button
                             type="button"
                             variant="outline-secondary"
-                            onClick={() => append({ text: '' })}
+                            onClick={() => append({text: ''})}
                         >
                             ➕ Add Subtask
                         </Button>

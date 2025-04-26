@@ -342,15 +342,15 @@ button:hover, .btn:hover {
     color: #fff;
 
     &.todo {
-        background: linear-gradient(45deg, #FBBF24, #FCD34D); // Amber
+        background: linear-gradient(45deg, #FBBF24, #FCD34D);
     }
 
     &.in-progress {
-        background: linear-gradient(45deg, #60A5FA, #3B82F6); // Blue
+        background: linear-gradient(45deg, #60A5FA, #3B82F6);
     }
 
     &.cancelled {
-        background: linear-gradient(45deg, #F87171, #EF4444); // Red
+        background: linear-gradient(45deg, #F87171, #EF4444);
     }
 
     &.on-hold {

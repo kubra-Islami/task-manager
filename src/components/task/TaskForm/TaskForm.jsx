@@ -6,19 +6,10 @@ import React from 'react';
 import {useForm, useFieldArray, Controller} from 'react-hook-form';
 import {Form, Button, Row, Col, Container, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
-import {useTasks} from '../../../Context/TaskContext.jsx';
 import {useNavigate} from 'react-router-dom';
-// import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
-const tagColors = ['#F87171', '#FBBF24', '#34D399', '#60A5FA', '#A78BFA'];
-const tagLabels = {
-    '#F87171': 'Cancelled',
-    '#FBBF24': 'To Do',
-    '#34D399': 'Done',
-    '#60A5FA': 'In Progress',
-    '#A78BFA': 'On Hold',
-};
 import {motion, AnimatePresence} from 'framer-motion';
+import {useTasks} from "@/Context/TaskContext.jsx";
 const priorities = ['Low', 'Medium', 'High'];
 
 const TaskForm = () => {
@@ -88,7 +79,7 @@ const TaskForm = () => {
                         name="dueDate"
                         render={({field}) => (
                             <DatePicker
-                                className="form-control"
+                                className="form-control ms-3"
                                 placeholderText="Select due date"
                                 showMonthYearDropdown
                                 isClearable
@@ -115,38 +106,19 @@ const TaskForm = () => {
                         </Form.Group>
                     </Col>
                     <Col>
-                    {/*<Form.Group className="mb-3">*/}
-                    {/*    <Form.Label>Tag Color</Form.Label>*/}
-                    {/*    <div className="d-flex gap-2">*/}
-                    {/*        {tagColors.map((color) => (*/}
-                    {/*            <OverlayTrigger*/}
-                    {/*                key={color}*/}
-                    {/*                placement="top"*/}
-                    {/*                overlay={*/}
-                    {/*                    <Tooltip id={`tooltip-${color}`}>*/}
-                    {/*                        {tagLabels[color]}*/}
-                    {/*                    </Tooltip>*/}
-                    {/*                }*/}
-                    {/*            >*/}
-                    {/*                <div*/}
-                    {/*                    onClick={() => setValue('tag', color)}*/}
-                    {/*                    style={{*/}
-                    {/*                        backgroundColor: color,*/}
-                    {/*                        width: 24,*/}
-                    {/*                        height: 24,*/}
-                    {/*                        borderRadius: '50%',*/}
-                    {/*                        cursor: 'pointer',*/}
-                    {/*                        border: tag === color ? '2px solid #000' : '1px solid #ccc',*/}
-                    {/*                    }}*/}
-                    {/*                />*/}
-                    {/*            </OverlayTrigger>*/}
-                    {/*        ))}*/}
-                    {/*    </div>*/}
-                    {/*</Form.Group>*/}
-                </Col>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Status</Form.Label>
+                            <Form.Select {...register('status')}>
+                                <option value="todo">To Do</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="cancelled">Cancelled</option>
+                                <option value="On-Hold">On Hold</option>
+                                <option value="done">Done</option>
+                            </Form.Select>
+                        </Form.Group>
+                    </Col>
             </Row>
 
-            {/*<Form.Label>Subtasks</Form.Label>*/}
             <AnimatePresence>
                 {fields.map((field, index) => (
                     <motion.div
@@ -175,7 +147,6 @@ const TaskForm = () => {
                     </motion.div>
                 ))}
             </AnimatePresence>
-
 
             <Button variant="warning" onClick={() => append('')} className="mb-3">
                 ➕ Add Subtask

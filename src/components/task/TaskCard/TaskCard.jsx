@@ -25,14 +25,6 @@ const TaskCard = ({task, handleEdit}) => {
                                 {task.title}
                             </Card.Title>
                         </div>
-
-                        {/* Ensure badge doesn't shrink or overflow */}
-                        <div className="flex-shrink-0">
-                            <Badge className={`status-badge ${task.status}`}>{task.status}</Badge>
-                            {/*<Badge bg="info" pill className="text-nowrap">*/}
-                            {/*    {task.status}*/}
-                            {/*</Badge>*/}
-                        </div>
                     </div>
 
                     <Card.Subtitle className="mb-2 text-truncate">

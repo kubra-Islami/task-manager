@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card, ListGroup, Badge } from 'react-bootstrap';
+import { Card, ListGroup } from 'react-bootstrap';
 import { BsCheckCircleFill, BsClockHistory, BsExclamationCircleFill } from 'react-icons/bs';
-import { useTasks } from '../../../Context/TaskContext.jsx';
-import './RecentTasks.css'; // Add custom styles here
+import './RecentTasks.css';
+import {useTasks} from "@/Context/TaskContext.jsx"; // your custom styles
 
 const RecentTasks = () => {
     const { tasks } = useTasks();
@@ -10,7 +10,7 @@ const RecentTasks = () => {
 
     const getStatusIcon = (status) => {
         const baseIconStyle = {
-            padding: '6px',
+            padding: '20px',
             borderRadius: '50%',
             backgroundColor: 'rgba(0,0,0,0.05)',
         };
@@ -26,6 +26,23 @@ const RecentTasks = () => {
         }
     };
 
+    const getStatusBadgeClass = (status) => {
+        switch (status) {
+            case 'todo':
+                return 'status-badge todo';
+            case 'in-progress':
+                return 'status-badge in-progress';
+            case 'cancelled':
+                return 'status-badge cancelled';
+            case 'On-Hold':
+                return 'status-badge on-hold';
+            case 'done':
+                return 'status-badge done';
+            default:
+                return 'status-badge';
+        }
+    };
+
     return (
         <Card className="recent-tasks-card animate-fade-in">
             <Card.Title className="fs-4 fw-bold mb-3 theme-text">🆕 Recent Tasks</Card.Title>
@@ -37,16 +54,21 @@ const RecentTasks = () => {
                 ) : (
                     recentTasks.map(task => (
                         <ListGroup.Item key={task.id} className="recent-task-item d-flex align-items-center">
-                            <div className="d-flex align-items-center gap-3 flex-grow-1">
-                                {getStatusIcon(task.status)}
-                                <div className="text-truncate task-info">
-                                    <span className="fw-semibold">{task.title}</span><br />
-                                    <small className="text-muted">
-                                        Due: {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'Not set'}
-                                    </small>
+                            <div className="d-flex align-items-center gap-3 flex-grow-1 justify-content-between">
+                                <div className="d-flex align-items-center gap-3">
+                                    {getStatusIcon(task.status)}
+                                    <div className="text-truncate task-info">
+                                        <span className="fw-semibold">{task.title}</span><br />
+                                        <small className="text-muted">
+                                            Due: {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'Not set'}
+                                        </small>
+                                    </div>
                                 </div>
+                                {/* Custom Status Badge */}
+                                <span className={getStatusBadgeClass(task.status)}>
+                                    {task.status.replace('-', ' ')}
+                                </span>
                             </div>
-                            <Badge className={`status-badge ${task.status}`}>{task.status}</Badge>
                         </ListGroup.Item>
                     ))
                 )}
