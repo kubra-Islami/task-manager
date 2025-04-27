@@ -4,9 +4,9 @@ import { Container, Row, Col, Card, Button, Image, Badge, ListGroup } from 'reac
 import { useTasks } from '../../context/TaskContext';
 import { useUser } from '@/Context/UserContext.jsx';
 import { useNavigate } from 'react-router-dom';
-import './Profile.css';
-import TaskCard from "@/components/task/TaskCard/TaskCard.jsx";
 import RecentTasks from "@/components/task/RecentTasks/RecentTasks.jsx";
+import './Profile.css';
+
 
 const Profile = () => {
     const { tasks } = useTasks();
@@ -18,7 +18,7 @@ const Profile = () => {
     }, [tasks]);
 
     const handleEditProfile = () => {
-        navigate('/edit-profile'); // Or open a modal instead
+        navigate('/settings'); // Or open a modal instead
     };
 
     return (

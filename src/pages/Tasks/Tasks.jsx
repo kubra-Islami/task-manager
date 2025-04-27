@@ -35,15 +35,6 @@ const Tasks = () => {
     const indexOfFirstTask = indexOfLastTask - tasksPerPage;
     const currentTasks = filteredTasks.slice(indexOfFirstTask, indexOfLastTask);
     const sensors = useSensors(useSensor(PointerSensor));
-    const [isPreloaderVisible, setPreloaderVisible] = useState(true);
-
-    useEffect(() => {
-        // The preloader will be hidden after first load
-        const isPreloaderShown = localStorage.getItem("preloaderShown");
-        if (isPreloaderShown) {
-            setPreloaderVisible(false);
-        }
-    }, []);
 
     useEffect(() => {
         applyFilter(activeFilter);

@@ -1,3 +1,4 @@
+
 #preloader {
     position: fixed;
     left: 0;
@@ -6,8 +7,6 @@
     width: 100%;
     z-index: 99999;
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #preloader:before,
@@ -49,9 +48,12 @@
     width: 1px;
     height: 0%;
     -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
     transform: translateY(-50%);
     background-color: var(--primary-color);
     -webkit-animation: lineheight 1000ms ease-in-out 0s forwards;
+    -o-animation: lineheight 1000ms ease-in-out 0s forwards;
     animation: lineheight 1000ms ease-in-out 0s forwards;
 }
 
@@ -64,8 +66,11 @@
     height: 100%;
     background-color: #999999;
     -webkit-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
     transform: translateY(-100%);
     -webkit-animation: lineround 1200ms linear 0s infinite;
+    -o-animation: lineround 1200ms linear 0s infinite;
     animation: lineround 1200ms linear 0s infinite;
     animation-delay: 2000ms;
 }
@@ -81,9 +86,45 @@
 
 @keyframes lineround {
     0% {
+        -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+        -o-transform: translateY(-100%);
         transform: translateY(-100%);
     }
     100% {
+        -webkit-transform: translateY(200%);
+        -ms-transform: translateY(200%);
+        -o-transform: translateY(200%);
         transform: translateY(200%);
     }
+}
+
+/*hiding all*/
+.preloaded .loader_line:after {
+    opacity: 0;
+}
+
+.preloaded .loader_line {
+    opacity: 0;
+    height: 100% !important;
+}
+
+.preloaded:before,
+.preloaded:after {
+    -webkit-animation: preloadedzero 300ms ease-in-out 500ms forwards;
+    -o-animation: preloadedzero 300ms ease-in-out 500ms forwards;
+    animation: preloadedzero 300ms ease-in-out 500ms forwards;
+}
+
+@keyframes preloadedzero {
+    0% {
+        width: 50%;
+    }
+    100% {
+        width: 0%;
+    }
+}
+
+body::-webkit-scrollbar {
+    width: 11px;
 }

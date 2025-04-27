@@ -7,6 +7,7 @@ import TaskFormModal from "@/components/TaskFormModal/TaskFormModal.jsx";
 import {useTasks} from "@/Context/TaskContext.jsx";
 import MainLayout from "@/components/layout/MainLayout.jsx";
 
+
 const TaskDetails = () => {
     const {id} = useParams();
     const location = useLocation();
@@ -92,7 +93,7 @@ const TaskDetails = () => {
                         <li>No subtasks</li>
                     )}
                 </ul>
-                <Button className="mt-3" variant="primary" onClick={() => navigate(-1, { replace: true })}>
+                <Button className="mt-3" variant="primary" onClick={() => navigate('/tasks')}>
                     Back to Tasks
                 </Button>
 
