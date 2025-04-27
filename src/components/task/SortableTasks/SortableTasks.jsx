@@ -1,18 +1,9 @@
 import React from "react";
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { format } from 'date-fns';
+import {useSortable} from "@dnd-kit/sortable";
+import {CSS} from "@dnd-kit/utilities";
+import {Button, OverlayTrigger, Tooltip} from "react-bootstrap";
+import {format} from 'date-fns';
 import {Link} from "react-router-dom";
-import {BsCheckCircleFill, BsClockHistory, BsExclamationCircleFill} from "react-icons/bs";
-
-const tagLabels = {
-    "#ff0000": "Urgent",
-    "#00ff00": "Green Task",
-    "#0000ff": "Blue Task",
-    "#ffa500": "Medium Priority",
-    "#800080": "Purple Tag",
-};
 
 const getStatusBadgeClass = (status) => {
     switch (status) {
@@ -32,7 +23,7 @@ const getStatusBadgeClass = (status) => {
 };
 
 
-const SortableTasks = ({ id, task, index }) => {
+const SortableTasks = ({id, task, index}) => {
     const {
         attributes,
         listeners,
@@ -60,42 +51,31 @@ const SortableTasks = ({ id, task, index }) => {
     };
 
     return (
-        <div
-            ref={setNodeRef}
-            style={style}
-            {...attributes}
-            className="table-row d-flex align-items-center"
-        >
-            {/* Drag Handle */}
-            <div
-                className="table-cell drag-handle"
-                {...listeners} // Drag listeners applied only here
-                style={{ cursor: "grab", padding: "0 8px" }}
-            >
-                <span style={{ fontWeight: "bold", fontSize: "18px" }}>⋮⋮</span>
-            </div>
-
-            <div className="table-cell">{index + 1}</div>
-            <div className="table-cell">{task.title}</div>
-            <div className="table-cell">{task.description}</div>
-            <div className="table-cell">
-                    <span className={getStatusBadgeClass(task.status)}>
-                                    {task.status.replace('-', ' ')}
-                    </span>
-            </div>
-            <div className="table-cell">{task.priority}</div>
-            <div className="table-cell">{task.dueDate ? format(new Date(task.dueDate), 'yyyy-MM-dd') : 'No due date'}</div>
-            <div className="table-cell">{truncateSubtasks(task.subtasks)}</div>
-            <div className="table-cell">
+        <tr ref={setNodeRef} style={style} {...attributes} {...listeners}>
+            <td data-label="">⋮⋮</td>
+            <td data-label="#"> {index + 1} </td>
+            <td data-label="Title"> {task.title} </td>
+            <td data-label="Description"> {task.description} </td>
+            <td data-label="Status">
+                <span className={getStatusBadgeClass(task.status)}>
+                  {task.status.replace('-', ' ')}
+                </span>
+            </td>
+            <td data-label="Priority"> {task.priority} </td>
+            <td data-label="Due Date">
+                {task.dueDate ? format(new Date(task.dueDate), 'yyyy-MM-dd') : 'No due date'}
+            </td>
+            <td data-label="Subtasks"> {truncateSubtasks(task.subtasks)} </td>
+            <td data-label="Actions">
                 <Link
                     to={`/tasks/${task.id}`}
-                    state={{ task }}
-                    className="btn btn-primary btn-sm text-white text-decoration-none mx-1"
+                    state={{task}}
+                    className="btn btn-primary btn-sm text-white mx-1"
                 >
                     View
                 </Link>
-            </div>
-        </div>
+            </td>
+        </tr>
     );
 };
 

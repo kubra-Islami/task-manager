@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {useLocation, useParams, useNavigate} from 'react-router-dom';
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
+
 import {Button, Badge} from 'react-bootstrap';
 import {format} from 'date-fns';
 import TaskFormModal from "@/components/TaskFormModal/TaskFormModal.jsx";
-import {useTasks} from "@/context/TaskContext";
+import {useTasks} from "@/Context/TaskContext.jsx";
 import MainLayout from "@/components/layout/MainLayout.jsx";
 
 const TaskDetails = () => {
@@ -91,7 +92,10 @@ const TaskDetails = () => {
                         <li>No subtasks</li>
                     )}
                 </ul>
-                <Button className="mt-3" variant="primary" onClick={() => navigate(-1)}>Back to Tasks</Button>
+                <Button className="mt-3" variant="primary" onClick={() => navigate(-1, { replace: true })}>
+                    Back to Tasks
+                </Button>
+
                 <Button className="mt-3 mx-3" variant="danger">Delete</Button>
                 <Button className="mt-3 mx-0" variant="warning" onClick={() => handleEdit(task.id)}>Edit</Button>
 

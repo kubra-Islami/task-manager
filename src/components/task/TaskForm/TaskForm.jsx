@@ -1,7 +1,3 @@
-// Used for both add/edit task
-// Form for adding/editing a task
-
-
 import React from 'react';
 import {useForm, useFieldArray, Controller} from 'react-hook-form';
 import {Form, Button, Row, Col, Container, OverlayTrigger, Tooltip} from 'react-bootstrap';
@@ -10,6 +6,7 @@ import {useNavigate} from 'react-router-dom';
 
 import {motion, AnimatePresence} from 'framer-motion';
 import {useTasks} from "@/Context/TaskContext.jsx";
+
 const priorities = ['Low', 'Medium', 'High'];
 
 const TaskForm = () => {
@@ -92,7 +89,7 @@ const TaskForm = () => {
                 </Form.Group>
 
                 <Row className="mb-3 ">
-                    <Col>
+                    <Col xl={6} lg={6} md={12} sm={12} xs={12}>
                         <Form.Group>
                             <Form.Label>Priority</Form.Label>
                             <Form.Select {...register('priority')}>
@@ -105,62 +102,50 @@ const TaskForm = () => {
                             </Form.Select>
                         </Form.Group>
                     </Col>
-                    <Col>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Status</Form.Label>
-                            <Form.Select {...register('status')}>
-                                <option value="todo">To Do</option>
-                                <option value="in-progress">In Progress</option>
-                                <option value="cancelled">Cancelled</option>
-                                <option value="On-Hold">On Hold</option>
-                                <option value="done">Done</option>
-                            </Form.Select>
-                        </Form.Group>
-                    </Col>
-            </Row>
+                </Row>
 
-            <AnimatePresence>
-                {fields.map((field, index) => (
-                    <motion.div
-                        key={field.id}
-                        initial={{opacity: 0, y: -10}}
-                        animate={{opacity: 1, y: 0}}
-                        exit={{opacity: 0, y: -10}}
-                    >
-                        <Row className="mb-2">
-                            <Col xs={10}>
-                                <Form.Control
-                                    type="text"
-                                    placeholder={`Subtask #${index + 1}`}
-                                    {...register(`subtasks.${index}`)}
-                                />
-                            </Col>
-                            <Col xs={2}>
-                                <Button
-                                    variant="outline-danger"
-                                    onClick={() => remove(index)} // Properly remove the subtask by index
-                                >
-                                    ❌
-                                </Button>
-                            </Col>
-                        </Row>
-                    </motion.div>
-                ))}
-            </AnimatePresence>
+                <AnimatePresence>
+                    {fields.map((field, index) => (
+                        <motion.div
+                            key={field.id}
+                            initial={{opacity: 0, y: -10}}
+                            animate={{opacity: 1, y: 0}}
+                            exit={{opacity: 0, y: -10}}
+                        >
+                            <Row className="mb-2">
+                                <Col xs={10}>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder={`Subtask #${index + 1}`}
+                                        {...register(`subtasks.${index}`)}
+                                    />
+                                </Col>
+                                <Col xs={2}>
+                                    <Button
+                                        variant="outline-danger"
+                                        onClick={() => remove(index)} // Properly remove the subtask by index
+                                    >
+                                        ❌
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
 
-            <Button variant="warning" onClick={() => append('')} className="mb-3">
-                ➕ Add Subtask
-            </Button>
-
-            <div>
-                <Button type="submit" variant="success">
-                    ✅ Create Task
+                <Button variant="warning" onClick={() => append('')} className="mb-3">
+                    ➕ Add Subtask
                 </Button>
-            </div>
-        </Form>
-</Container>
-)
-    ;
+
+                <div>
+                    <Button type="submit" variant="success">
+                        ✅ Create Task
+                    </Button>
+                </div>
+            </Form>
+        </Container>
+    )
+        ;
 };
 
 export default TaskForm;

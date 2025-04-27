@@ -7,7 +7,7 @@ import Profile from './pages/Profile/Profile'
 import Settings from './pages/Settings/Settings'
 import Tasks from './pages/Tasks/Tasks';
 import TaskForm from "@/components/task/TaskForm/TaskForm.jsx";
-import TaskDetails from "@/pages/Tasks/TaskDetails/TaskDetails.jsx";
+import TaskDetails from "@/pages/TaskDetails/TaskDetails.jsx";
 
 export const AppRoutes = ({ isLoggedIn }) => {
     if (!isLoggedIn) {

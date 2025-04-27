@@ -9,6 +9,7 @@
     border: 1px solid #444;
     width: 100%;
 }
+
 a{
     text-decoration: none !important;
 }
@@ -272,7 +273,29 @@ a{
     color: var(--primary-color) !important;
 }
 
-.page-link {
-    /*background-color: transparent !important;*/
-    /*border: none !important; // optional: if you want no borders*/
+/* table styles */
+/* Apply general styles to all td and th elements */
+tr td, tr th {
+    min-width: 130px !important;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensure content is centered vertically and horizontally */
+thead th, tbody td {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Apply media query for screens with max width of 768px */
+@media (max-width: 768px) {
+    tr td, tr th {
+        min-width: 200px !important;
+    }
+
+    /* Target the first two td elements specifically */
+    tr td:nth-child(1), tr td:nth-child(2) {
+        min-width: 50px !important;
+    }
 }

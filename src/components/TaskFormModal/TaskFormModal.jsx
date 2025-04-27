@@ -146,7 +146,7 @@ const TaskFormModal = ({show, handleClose, taskId}) => {
                         ))}
                         <Button
                             type="button"
-                            variant="outline-secondary"
+                            variant="outline-primary"
                             onClick={() => append({text: ''})}
                         >
                             ➕ Add Subtask

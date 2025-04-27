@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Container, Button, Pagination } from 'react-bootstrap';
+import {Container, Button, Table} from 'react-bootstrap';
 import {useTasks} from '../../context/TaskContext';
 import MainLayout from '../../components/layout/MainLayout';
 import TaskFilter from '@/components/task/TaskFilters/TaskFilters.jsx';
@@ -25,7 +25,7 @@ const Tasks = () => {
     const [filteredTasks, setFilteredTasks] = useState(tasks);
     const [activeFilter, setActiveFilter] = useState({});
     const [selectedTaskId, setSelectedTaskId] = useState(null);
-     // pagination states
+    // pagination states
     const [currentPage, setCurrentPage] = useState(1);
     const tasksPerPage = 5; // or whatever number you prefer
     const totalPages = Math.ceil(filteredTasks.length / tasksPerPage);
@@ -35,6 +35,15 @@ const Tasks = () => {
     const indexOfFirstTask = indexOfLastTask - tasksPerPage;
     const currentTasks = filteredTasks.slice(indexOfFirstTask, indexOfLastTask);
     const sensors = useSensors(useSensor(PointerSensor));
+    const [isPreloaderVisible, setPreloaderVisible] = useState(true);
+
+    useEffect(() => {
+        // The preloader will be hidden after first load
+        const isPreloaderShown = localStorage.getItem("preloaderShown");
+        if (isPreloaderShown) {
+            setPreloaderVisible(false);
+        }
+    }, []);
 
     useEffect(() => {
         applyFilter(activeFilter);
@@ -78,10 +87,9 @@ const Tasks = () => {
     }, [selectedTaskId]);
 
 
-
     return (
         <MainLayout>
-            <Container className="py-4">
+            <div className="py-4 container-table">
                 <h2 className="mb-4">📋 My Tasks</h2>
 
 
@@ -99,35 +107,41 @@ const Tasks = () => {
                     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                         <SortableContext
                             items={filteredTasks.map(task => task.id)}
-                            strategy={verticalListSortingStrategy}
-                        >
-                            <div className="custom-table">
-                                <div className="table-header table-row">
-                                    <div className="table-cell"></div>
-                                    <div className="table-cell">#</div>
-                                    <div className="table-cell">Title</div>
-                                    <div className="table-cell">Description</div>
-                                    <div className="table-cell">Status</div>
-                                    <div className="table-cell">Priority</div>
-                                    <div className="table-cell">Due Date</div>
-                                    <div className="table-cell">SubTasks</div>
-                                    <div className="table-cell">Actions</div>
-                                </div>
+                            strategy={verticalListSortingStrategy}>
 
-                                {currentTasks.map((task, index) => (
-                                    <SortableTasks
-                                        key={task.id}
-                                        id={task.id}
-                                        task={task}
-                                        index={indexOfFirstTask + index}
-                                    />
-                                ))}
+                            <div className="table-responsive">
+                                <Table striped bordered hover className="task-table">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>#</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Status</th>
+                                        <th>Priority</th>
+                                        <th>Due Date</th>
+                                        <th>SubTasks</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {currentTasks.map((task, index) => (
+                                        <SortableTasks
+                                            key={task.id}
+                                            id={task.id}
+                                            task={task}
+                                            index={indexOfFirstTask + index}
+                                        />
+                                    ))}
+                                    </tbody>
+                                </Table>
                             </div>
 
                         </SortableContext>
                     </DndContext>
+
                 )}
-            </Container>
+            </div>
             {filteredTasks.length > 0 && (
                 <RenderPagination
                     currentPage={currentPage}
