@@ -8,12 +8,11 @@ import { useNavigate } from 'react-router-dom'
 import MainLayout from '../../components/layout/MainLayout'
 
 const Dashboard = () => {
-    const [tasks, setTasks] = useState([]) // Here, you fetch tasks from context or API
+    const [tasks, setTasks] = useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
-        // Example: fetching tasks (replace with actual data fetch or context)
-        const userTasks = [] // Mock for no tasks scenario, use context or API
+        const userTasks = []
         setTasks(userTasks)
 
         if (userTasks.length === 0) {

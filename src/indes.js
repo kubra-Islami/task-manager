@@ -16,12 +16,12 @@ window.addEventListener('load', function () {
 // ------------------   CURSOR    ----------------------
 // -----------------------------------------------------
 
-function elisc_tm_cursor(){
+function elisc_tm_cursor() {
     "use strict";
 
-    var myCursor	= jQuery('.mouse-cursor');
+    var myCursor = jQuery('.mouse-cursor');
 
-    if(myCursor.length){
+    if (myCursor.length) {
         if ($("body")) {
             const e = document.querySelector(".cursor-inner"),
                 t = document.querySelector(".cursor-outer");
@@ -36,6 +36,6 @@ function elisc_tm_cursor(){
             }), e.style.visibility = "visible", t.style.visibility = "visible"
         }
     }
-};
+}
 
 elisc_tm_cursor();

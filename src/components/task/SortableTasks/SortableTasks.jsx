@@ -1,7 +1,6 @@
 import React from "react";
 import {useSortable} from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
-import {Button, OverlayTrigger, Tooltip} from "react-bootstrap";
 import {format} from 'date-fns';
 import {Link} from "react-router-dom";
 
@@ -24,6 +23,7 @@ const getStatusBadgeClass = (status) => {
 
 
 const SortableTasks = ({id, task, index}) => {
+// const SortableTasks = React.memo(({id, task, index}) => {
     const {
         attributes,
         listeners,
@@ -78,5 +78,6 @@ const SortableTasks = ({id, task, index}) => {
         </tr>
     );
 };
+// });
 
 export default SortableTasks;

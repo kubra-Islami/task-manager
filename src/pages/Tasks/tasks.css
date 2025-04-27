@@ -287,6 +287,12 @@ thead th, tbody td {
     text-align: center;
     vertical-align: middle;
 }
+.centered-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
 /* Apply media query for screens with max width of 768px */
 @media (max-width: 768px) {
