@@ -8,21 +8,21 @@ import {useEffect} from "react";
 
 function App() {
     const isLoggedIn = true;
-    useEffect(() => {
-        // وقتی اپ کامل لود شد
-        const preloader = document.getElementById('preloader');
-        if (preloader) {
-            // یکم صبر کن بعد محو یا حذفش کن
-            setTimeout(() => {
-                preloader.style.opacity = '0';
-                preloader.style.visibility = 'hidden';
-                preloader.style.display = 'none'; // یا مستقیم حذفش کن
-                // preloader.remove(); // اگه بخوای کامل حذف شه
-            }, 2000); // مثلا بعد از ۲ ثانیه
-        }
-    }, []);
+    // useEffect(() => {
+    //     // وقتی اپ کامل لود شد
+    //     const preloader = document.getElementById('preloader');
+    //     if (preloader) {
+    //         // یکم صبر کن بعد محو یا حذفش کن
+    //         setTimeout(() => {
+    //             preloader.style.opacity = '0';
+    //             preloader.style.visibility = 'hidden';
+    //             preloader.style.display = 'none'; // یا مستقیم حذفش کن
+    //             // preloader.remove(); // اگه بخوای کامل حذف شه
+    //         }, 2000); // مثلا بعد از ۲ ثانیه
+    //     }
+    // }, []);
     return (
-        <ThemeProvider> {/* 👈 Wrap everything */}
+        <ThemeProvider>
             <TaskProvider>
                 <UserProvider>
                     <RouteSpinner />

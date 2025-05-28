@@ -30,7 +30,6 @@ const TaskDetails = () => {
 
 
     const handleEdit = (taskId) => {
-        console.log("Editing Task ID:", taskId);
         setSelectedTaskId(taskId);
         setShowModal(true);
     };

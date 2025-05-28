@@ -1,9 +1,8 @@
-// src/components/TaskFormModal.jsx
 import React, {useEffect} from 'react';
-import {Modal, Button, Form, Row, Col, InputGroup} from 'react-bootstrap';
+import {Modal, Button, Form, InputGroup} from 'react-bootstrap';
 import {useForm, useFieldArray} from 'react-hook-form';
 import {useTasks} from '../../context/TaskContext';
-import {useTheme} from '../../context/ThemeContext'; // Adjust the path if needed
+import {useTheme} from '../../context/ThemeContext';
 
 const TaskFormModal = ({show, handleClose, taskId}) => {
     const {tasks, updateTask} = useTasks();

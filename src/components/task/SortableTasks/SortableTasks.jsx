@@ -70,8 +70,7 @@ const SortableTasks = ({id, task, index}) => {
                 <Link
                     to={`/tasks/${task.id}`}
                     state={{task}}
-                    className="btn btn-primary btn-sm text-white mx-1"
-                >
+                    className="btn btn-primary btn-sm text-white mx-1">
                     View
                 </Link>
             </td>
