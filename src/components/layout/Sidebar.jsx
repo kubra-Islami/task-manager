@@ -25,11 +25,6 @@ const Sidebar = () => {
                          className={({isActive}) => `sidebar-link nav-link px-3 py-2 rounded ${isActive ? 'active-link' : ''}`}>
                     👤 <span className="ms-2">Profile</span>
                 </NavLink>
-
-                <NavLink to="/settings"
-                         className={({isActive}) => `sidebar-link nav-link px-3 py-2 rounded ${isActive ? 'active-link' : ''}`}>
-                    ⚙️ <span className="ms-2">Settings</span>
-                </NavLink>
             </Nav>
         </div>
     );

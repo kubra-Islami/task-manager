@@ -53,7 +53,7 @@ const SortableTasks = ({id, task, index}) => {
     return (
         <tr ref={setNodeRef} style={style} {...attributes} {...listeners}>
             <td data-label="">⋮⋮</td>
-            <td data-label="#"> {index + 1} </td>
+            {/*<td data-label="#"> {index + 1} </td>*/}
             <td data-label="Title"> {task.title} </td>
             <td data-label="Description"> {task.description} </td>
             <td data-label="Status">

@@ -42,8 +42,6 @@ const TaskFormModal = ({show, handleClose, taskId}) => {
         name: 'subtasks',
     });
 
-    const tag = watch('tag');
-
     useEffect(() => {
         if (task) {
             const formatToDateInput = (dateString) => {

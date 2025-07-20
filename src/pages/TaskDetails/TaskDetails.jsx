@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import {useLocation, useParams, useNavigate} from 'react-router-dom';
 
 import {Button, Badge} from 'react-bootstrap';
 import {format} from 'date-fns';
 import TaskFormModal from "@/components/TaskFormModal/TaskFormModal.jsx";
 import {useTasks} from "@/Context/TaskContext.jsx";
 import MainLayout from "@/components/layout/MainLayout.jsx";
+import DeleteTaskModal from "@/components/DeleteTaskModal/DeleteTaskModal.jsx";
 
 
 const TaskDetails = () => {
@@ -15,7 +16,8 @@ const TaskDetails = () => {
     const {tasks} = useTasks();
 
     const [selectedTaskId, setSelectedTaskId] = useState(null);
-    const [showModal, setShowModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const [task, setTask] = useState(() => {
         const taskFromState = location.state?.task;
@@ -31,12 +33,15 @@ const TaskDetails = () => {
 
     const handleEdit = (taskId) => {
         setSelectedTaskId(taskId);
-        setShowModal(true);
+        setShowEditModal(true);
     };
-
+    const handleDelete = (taskId) => {
+        setSelectedTaskId(taskId);
+        setShowDeleteModal(true);
+    }
 
     const handleCloseModal = () => {
-        setShowModal(false);
+        setShowEditModal(false);
         setSelectedTaskId(null);
     };
 
@@ -96,16 +101,23 @@ const TaskDetails = () => {
                     Back to Tasks
                 </Button>
 
-                <Button className="mt-3 mx-3" variant="danger">Delete</Button>
+                <Button className="mt-3 mx-3" variant="danger" onClick={() => handleDelete(task.id)}>Delete</Button>
                 <Button className="mt-3 mx-0" variant="warning" onClick={() => handleEdit(task.id)}>Edit</Button>
 
-                {showModal && (
+                {showEditModal && (
                     <TaskFormModal
-                        show={showModal}
+                        show={showEditModal}
                         handleClose={handleCloseModal}
                         taskId={selectedTaskId}
                     />
                 )}
+
+                {
+                    showDeleteModal && <DeleteTaskModal
+                        show={showDeleteModal}
+                        handleClose={() => setShowDeleteModal(false)}
+                        taskId={selectedTaskId} />
+                }
             </div>
         </MainLayout>
     );

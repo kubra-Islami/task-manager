@@ -1,4 +1,3 @@
-// src/components/layout/MainLayout.jsx
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import { Container, Row, Col } from 'react-bootstrap';
