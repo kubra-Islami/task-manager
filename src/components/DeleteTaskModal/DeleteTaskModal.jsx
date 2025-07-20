@@ -10,7 +10,6 @@ const DeleteTaskModal = ({show, handleClose, taskId}) => {
     const onDeleteTask = (task_Id) => {
         const updatedTasks = tasks.filter(t => t.id !== task_Id);
         setTasks(updatedTasks);
-        setShowToast(true);
         handleClose();
         navigate('/tasks');
     };

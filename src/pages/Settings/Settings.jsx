@@ -32,7 +32,7 @@ const Settings = () => {
     return (
         <MainLayout>
             <Container className="theme-card mt-5 p-4 rounded shadow-sm">
-                <h2 className="mb-4">⚙️ Settings</h2>
+                <h2 className="mb-4">⚙️ Edit Profile</h2>
                 <Form onSubmit={handleSubmit}
                 >
                     <Row>
@@ -60,10 +60,10 @@ const Settings = () => {
                             <Form.Group className="mb-3">
                                 <Form.Label column={"sm"}>Avatar URL</Form.Label>
                                 <Form.Control
-                                    type="text"
+                                    type="file"
                                     name="avatar"
-                                    value={formData.avatar}
-                                    onChange={handleChange}
+                                    // value={formData.avatar}
+                                    // onChange={handleChange}
                                 />
                             </Form.Group>
                             <Form.Group className="mb-3">
