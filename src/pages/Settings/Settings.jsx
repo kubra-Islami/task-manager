@@ -1,7 +1,3 @@
-// Theme toggle
-
-// Notification preferences
-
 import React, {useState} from 'react';
 import {Form, Button, Container, Row, Col} from 'react-bootstrap';
 import {useUser} from '../../context/UserContext';
@@ -24,7 +20,7 @@ const Settings = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setUser(formData); // Update global user state
+        setUser(formData);
         alert('Profile updated!');
     };
 

@@ -1,0 +1,29 @@
+/* Auth.css */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, #e0eafc, #cfdef3);
+    padding: 2rem 1rem;
+}
+
+.auth-card {
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.auth-card h3 {
+    font-weight: 600;
+    color: #333;
+}
+
+.auth-card .form-control {
+    border-radius: 0.5rem;
+}
+
+.auth-card button {
+    border-radius: 0.5rem;
+    font-weight: 500;
+}
