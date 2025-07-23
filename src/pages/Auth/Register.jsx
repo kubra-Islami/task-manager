@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "@/context/AuthContext";
-import { useUser } from "@/context/UserContext";  // <-- import
+import { useUser } from "@/context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import "./auth.css";
@@ -9,7 +9,7 @@ import "./auth.css";
 export default function Register() {
     const { register: formRegister, handleSubmit } = useForm();
     const { login, user: authUser } = useAuth();
-    const { setUser } = useUser();  // get setUser
+    const { setUser } = useUser();
     const navigate = useNavigate();
 
     useEffect(() => {

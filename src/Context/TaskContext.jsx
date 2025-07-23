@@ -23,17 +23,6 @@ export const TaskProvider = ({ children }) => {
     const { email ,password } = useAuth();
     const [tasks, setTasks] = useState([]);
 
-    // useEffect(() => {
-    //     const saved = localStorage.getItem(`tasks_${email}`);
-    //     setTasks(saved ? JSON.parse(saved) : []);
-    // }, [email]);
-
-    // useEffect(() => {
-    //     const saved = localStorage.getItem(`tasks_${email}`);
-    //     setTasks(saved ? JSON.parse(saved) : []);
-    // }, [email]);
-
-
     useEffect(() => {
         const saved = localStorage.getItem(`tasks_${email}`);
         const parsed = saved ? JSON.parse(saved) : [];
@@ -69,41 +58,3 @@ export const TaskProvider = ({ children }) => {
         </TaskContext.Provider>
     );
 };
-
-
-// // src/context/TaskContext.jsx
-// import { createContext, useContext, useEffect, useState } from "react";
-// import { useAuth } from "./AuthContext"; // <- your user context or auth hook
-//
-// const TaskContext = createContext();
-//
-// export const TaskProvider = ({ children }) => {
-//     const { user } = useAuth(); // Assume this provides current user (e.g., user.email)
-//     const [tasks, setTasks] = useState([]);
-//
-//     // Load tasks from localStorage when user changes
-//     useEffect(() => {
-//         if (user?.email) {
-//             const savedTasks = JSON.parse(localStorage.getItem(`tasks-${user.email}`)) || [];
-//             setTasks(savedTasks);
-//         } else {
-//             setTasks([]); // If no user, clear tasks
-//         }
-//     }, [user]);
-//
-//     // Save tasks to localStorage when tasks change
-//     useEffect(() => {
-//         if (user?.email) {
-//             localStorage.setItem(`tasks-${user.email}`, JSON.stringify(tasks));
-//         }
-//     }, [tasks, user]);
-//
-//     return (
-//         <TaskContext.Provider value={{ tasks, setTasks }}>
-//             {children}
-//         </TaskContext.Provider>
-//     );
-// };
-
-// export const useTasks = () => useContext(TaskContext);
-

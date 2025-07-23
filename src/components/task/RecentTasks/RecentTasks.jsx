@@ -8,7 +8,9 @@ const RecentTasks = () => {
     const { tasks } = useTasks();
     const recentTasks = [...tasks].slice(-3).reverse();
 
+
     const getStatusIcon = (status) => {
+
         const baseIconStyle = {
             padding: '20px',
             borderRadius: '50%',
@@ -24,6 +26,7 @@ const RecentTasks = () => {
             default:
                 return <BsClockHistory style={{ ...baseIconStyle, color: 'gray' }} />;
         }
+
     };
 
     const getStatusBadgeClass = (status) => {
@@ -43,6 +46,7 @@ const RecentTasks = () => {
         }
     };
 
+
     return (
         <Card className="recent-tasks-card animate-fade-in">
             <Card.Title className="fs-4 fw-bold mb-3 theme-text">🆕 Recent Tasks</Card.Title>
@@ -58,7 +62,10 @@ const RecentTasks = () => {
                                 <div className="d-flex align-items-center gap-3">
                                     {getStatusIcon(task.status)}
                                     <div className="text-truncate task-info">
-                                        <span className="fw-semibold">{task.title}</span><br />
+                                       <span className="fw-semibold">
+                                          {typeof task.title === 'string' ? task.title : JSON.stringify(task.title)}
+                                       </span>
+                                        {/*<span className="fw-semibold">{task.title}</span><br />*/}
                                         <small className="text-muted">
                                             Due: {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'Not set'}
                                         </small>
