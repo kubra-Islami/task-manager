@@ -1,40 +1,64 @@
-// src/components/layout/Navbar.jsx
-import {Navbar, Container, Nav, Button} from 'react-bootstrap'
-import {useUser} from "@/Context/UserContext.jsx";
-import {useTheme} from "@/Context/ThemeContext.jsx";
+import {Navbar, Container, Nav} from 'react-bootstrap';
+import {useUser} from '@/Context/UserContext.jsx';
+import {useTheme} from '@/Context/ThemeContext.jsx';
+import user_image from "../../assets/user.jpg";
 
 const CustomNavbar = () => {
     const {user} = useUser();
-    const { theme, toggleTheme } = useTheme();
+    const {theme, toggleTheme} = useTheme();
+
+    const avatarSrc =
+        user?.avatar ||
+        user_image;
 
     return (
         <Navbar className="theme-bg px-3 py-2 navbar" expand="lg">
-        <Container fluid>
-                <Navbar.Brand className='theme-text'>📝 TaskFlow</Navbar.Brand>
-                <Nav className="ms-auto d-flex align-items-center" style={{flexWrap: 'nowrap'}}>
-                    <div className="d-flex align-items-center gap-2 flex-nowrap" style={{whiteSpace: 'nowrap'}}>
-                        <span className="me-3 d-none d-sm-inline-block "
-                              style={{maxWidth: '150px', overflow: 'hidden', textOverflow: 'ellipsis'}}>
-                             Hello, {user.name}
-                        </span>
+            <Container fluid>
+                <Navbar.Brand className="theme-text fs-4">📝 TaskFlow</Navbar.Brand>
+
+                <Nav className="ms-auto d-flex align-items-center">
+                    <div
+                        className="d-flex align-items-center gap-3"
+                        style={{whiteSpace: 'nowrap'}}
+                    >
+            <span
+                className="d-none d-sm-inline-block text-truncate"
+                style={{maxWidth: '150px'}}
+            >
+              👋 Hello, {user?.name || 'Guest'}
+            </span>
+
                         <img
-                            src="src/assets/avatar.jpg"
-                            alt="Avatar"
-                            style={{width: '40px', height: '40px', borderRadius: '50%'}}
-                            className="me-2"
+                            src={avatarSrc}
+                            alt="User Avatar"
+                            className="shadow-sm"
+                            style={{
+                                width: '40px',
+                                height: '40px',
+                                objectFit: 'cover',
+                                borderRadius: '50%',
+                                border: '2px solid #ddd',
+                            }}
                         />
-                        <div className="theme-toggle" onClick={toggleTheme} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && toggleTheme()}>
-                            <div className={`toggle-thumb ${theme === 'dark' ? 'dark' : 'light'}`}>
-                                {theme === 'light' ? '🌞' : '🌙'}
-                            </div>
+
+                        <div
+                            className="theme-toggle px-2"
+                            onClick={toggleTheme}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => e.key === 'Enter' && toggleTheme()}
+                            style={{
+                                cursor: 'pointer',
+                                fontSize: '1.3rem',
+                            }}
+                        >
+                            {theme === 'light' ? '🌞' : '🌙'}
                         </div>
                     </div>
                 </Nav>
-
             </Container>
         </Navbar>
-    )
-}
+    );
+};
 
 export default CustomNavbar;
-

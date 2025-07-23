@@ -1,25 +1,76 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "@/context/AuthContext";
-import {Link, useNavigate} from "react-router-dom";
+import { useUser } from "@/context/UserContext";  // <-- import
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import "./auth.css";
 
 export default function Register() {
     const { register: formRegister, handleSubmit } = useForm();
-    const { login, user } = useAuth();
+    const { login, user: authUser } = useAuth();
+    const { setUser } = useUser();  // get setUser
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (user) {
+        if (authUser) {
             navigate("/welcome");
         }
-    }, [user, navigate]);
+    }, [authUser, navigate]);
+
+    // const onSubmit = async (data) => {
+    //     console.log('onsubmit')
+    //     const newUser = {
+    //         name: data.name,
+    //         email: data.email,
+    //         password: data.password,
+    //         avatar: 'src/assets/user.jpg', // Optional default avatar
+    //     };
+    //
+    //     try {
+    //         const response = await fetch('http://localhost:3000/api/register', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify(newUser),
+    //         });
+    //
+    //
+    //         if (!response.ok) {
+    //             const error = await response.text();
+    //             console.log(`Registration failed: ${error}`);
+    //             return;
+    //         }
+    //
+    //         const savedUser = await response.json();
+    //         login(savedUser);
+    //         setUser(savedUser);
+    //         console.log(newUser)
+    //         navigate('/welcome');
+    //     } catch (err) {
+    //         console.log('Something went wrong.' + err);
+    //     }
+    // };
 
     const onSubmit = (data) => {
-        login(data.email); // Simulate login
-        navigate("/welcome");
+        const newUser = {
+            name: data.name,
+            email: data.email,
+            password: data.password,
+            avatar: 'src/assets/user.jpg',
+        };
+
+        // Save to localStorage as JSON string
+        localStorage.setItem('user', JSON.stringify(newUser));
+
+        // Login the user and redirect
+        login(newUser);
+        setUser(newUser);
+        navigate('/welcome');
     };
+
+
 
     return (
         <Container className="d-flex justify-content-center align-items-center vh-100">
@@ -29,7 +80,6 @@ export default function Register() {
                         <Card.Body>
                             <h3 className="text-center mb-4">Create an Account</h3>
                             <Form onSubmit={handleSubmit(onSubmit)}>
-
                                 <Form.Group className="mb-3" controlId="name">
                                     <Form.Label>Name</Form.Label>
                                     <Form.Control
@@ -69,7 +119,6 @@ export default function Register() {
                                         Already have an account? <Link to="/login">Login</Link>
                                     </small>
                                 </div>
-
                             </Form>
                         </Card.Body>
                     </Card>

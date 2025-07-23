@@ -22,6 +22,7 @@ import RenderPagination from '@/components/task/Pagination/RenderPagination.jsx'
 
 const Tasks = () => {
     const {tasks, setTasks} = useTasks();
+    // const { tasks, addTask, updateTask } = useTasks();
     const [filteredTasks, setFilteredTasks] = useState([]);
     const [activeFilter, setActiveFilter] = useState({});
     const [selectedTaskId, setSelectedTaskId] = useState(null);
@@ -44,11 +45,7 @@ const Tasks = () => {
     }, [tasks]);
 
     const applyFilter = (filter) => {
-        console.log('Tasks Before Filter:', tasks); // Log tasks before filtering
-        console.log('Filter:', filter); // Log the current filter
-
         let filtered = tasks;
-
         if (filter.status) {
             filtered = filtered.filter(task => task.status === filter.status);
             console.log('Filtered by Status:', filtered); // Log after filtering by status
@@ -58,13 +55,11 @@ const Tasks = () => {
             filtered = filtered.filter(task =>
                 task.tag?.toLowerCase().includes(filter.tag.toLowerCase())
             );
-            console.log('Filtered by Tag:', filtered); // Log after filtering by tag
+            console.log('Filtered by Tag:', filtered);
         }
 
         setActiveFilter(filter);
         setFilteredTasks(filtered);
-
-        console.log('Final Filtered Tasks:', filtered); // Log the final filtered tasks
     };
 
 
@@ -107,7 +102,7 @@ const Tasks = () => {
                         <tbody>
                         <tr>
                             <td className="centered-cell">
-                                <p className="statusFilter text-bold text-center p-3 m-0" style={{fontSize: '1.6rem',color:'rgb(187 24 24);'}}>
+                                <p className="statusFilter text-bold text-center p-3 m-0" style={{fontSize: '1.6rem',color:'rgb(187 24 24)'}}>
                                     No tasks match the filter criteria.
                                 </p>
                             </td>

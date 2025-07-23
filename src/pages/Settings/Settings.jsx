@@ -1,108 +1,135 @@
-import React, {useState} from 'react';
-import {Form, Button, Container, Row, Col} from 'react-bootstrap';
-import {useUser} from '../../context/UserContext';
-import MainLayout from "@/components/layout/MainLayout.jsx";
+import React, { useEffect, useState } from 'react';
+import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
 import { useTheme } from '@/Context/ThemeContext.jsx';
+import { useAuth } from '@/Context/AuthContext.jsx';
+import MainLayout from '@/components/layout/MainLayout.jsx';
+import user_image from "../../assets/user.jpg";
 
 const Settings = () => {
-    const {user, setUser} = useUser();
-    // const [formData, setFormData] = useState(user);
+    const { user, setUser } = useAuth();
     const { theme, toggleTheme } = useTheme();
+
     const [formData, setFormData] = useState({
-        ...user,
-        reminders: user.reminders ?? true,
+        name: '',
+        email: '',
+        avatar: '',
+        reminders: true,
     });
 
+    useEffect(() => {
+        if (user) {
+            setFormData({
+                name: user.name || '',
+                email: user.email || '',
+                avatar: user.avatar || '',
+                reminders: user.reminders ?? true,
+            });
+        }
+    }, [user]);
+
     const handleChange = (e) => {
-        const {name, value} = e.target;
-        setFormData((prev) => ({...prev, [name]: value}));
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleAvatarChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setFormData((prev) => ({ ...prev, avatar: reader.result }));
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setUser(formData);
-        alert('Profile updated!');
+        localStorage.setItem("user", JSON.stringify(formData));
+        alert('✅ Profile updated successfully!');
     };
-
 
     return (
         <MainLayout>
-            <Container className="theme-card mt-5 p-4 rounded shadow-sm">
-                <h2 className="mb-4">⚙️ Edit Profile</h2>
-                <Form onSubmit={handleSubmit}
-                >
-                    <Row>
-                        <Col md={6}>
-                            <Form.Group className="mb-3">
-                                <Form.Label column={"sm"}>Full Name</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                />
-                            </Form.Group>
+            <Container className="mt-5">
+                <Card className="p-4 shadow-sm">
+                    <h3 className="mb-4 text-primary">⚙️ Edit Profile Settings</h3>
+                    <Form onSubmit={handleSubmit}>
+                        <Row>
+                            <Col md={6}>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Full Name</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        placeholder="Enter your full name"
+                                        required
+                                    />
+                                </Form.Group>
 
-                            <Form.Group className="mb-3">
-                                <Form.Label column={"sm"}>Email</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                />
-                            </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Email</Form.Label>
+                                    <Form.Control
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        placeholder="Enter your email"
+                                        required
+                                    />
+                                </Form.Group>
 
-                            <Form.Group className="mb-3">
-                                <Form.Label column={"sm"}>Avatar URL</Form.Label>
-                                <Form.Control
-                                    type="file"
-                                    name="avatar"
-                                    // value={formData.avatar}
-                                    // onChange={handleChange}
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Check
-                                    type="switch"
-                                    id="theme-toggle"
-                                    label="Enable Dark Mode"
-                                    checked={theme === 'dark'}
-                                    onChange={toggleTheme}
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Check
-                                    type="checkbox"
-                                    label="Receive task reminders"
-                                    name="reminders"
-                                    checked={formData.reminders}
-                                    onChange={(e) =>
-                                        setFormData((prev) => ({
-                                            ...prev,
-                                            reminders: e.target.checked,
-                                        }))
-                                    }
-                                />
-                            </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Upload New Avatar</Form.Label>
+                                    <Form.Control type="file" onChange={handleAvatarChange} />
+                                </Form.Group>
 
-                            <Button type="submit" variant="primary">
-                                Save Changes
-                            </Button>
-                        </Col>
+                                <Form.Group className="mb-3">
+                                    <Form.Check
+                                        type="switch"
+                                        id="theme-switch"
+                                        label={`Enable ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+                                        checked={theme === 'dark'}
+                                        onChange={toggleTheme}
+                                    />
+                                </Form.Group>
 
-                        <Col md={6} className="text-center">
-                            <img
-                                src={formData.avatar}
-                                alt="Avatar"
-                                className="rounded-circle shadow"
-                                width={120}
-                                height={120}
-                            />
-                            <p className="mt-2 text-muted">Live preview</p>
-                        </Col>
-                    </Row>
-                </Form>
+                                <Form.Group className="mb-4">
+                                    <Form.Check
+                                        type="checkbox"
+                                        label="Receive task reminders"
+                                        name="reminders"
+                                        checked={formData.reminders}
+                                        onChange={(e) =>
+                                            setFormData((prev) => ({
+                                                ...prev,
+                                                reminders: e.target.checked,
+                                            }))
+                                        }
+                                    />
+                                </Form.Group>
+
+                                <Button type="submit" variant="primary">
+                                    💾 Save Changes
+                                </Button>
+                            </Col>
+
+                            <Col md={6} className="text-center mt-4 mt-md-0">
+                                <img
+                                    src={formData.avatar || user_image}
+                                    alt="Avatar Preview"
+                                    className="rounded-circle shadow-sm border"
+                                    width={120}
+                                    height={120}
+                                />
+                                <p className="mt-2 text-muted">Live Avatar Preview</p>
+                            </Col>
+                        </Row>
+                    </Form>
+                </Card>
             </Container>
         </MainLayout>
     );

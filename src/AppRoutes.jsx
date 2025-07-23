@@ -8,6 +8,7 @@ import TaskDetails from "@/pages/TaskDetails/TaskDetails";
 import Login from "@/pages/Auth/Login.jsx";
 import Register from "@/pages/Auth/Register.jsx";
 import { useAuth } from "./context/AuthContext";
+import {TaskProvider} from "@/Context/TaskContext.jsx";
 
 export const AppRoutes = () => {
     const { user } = useAuth();
@@ -23,14 +24,17 @@ export const AppRoutes = () => {
     }
 
     return (
-        <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/welcome" element={<Welcome />} />
-            <Route path="/tasks" element={<Tasks />} />
-            <Route path="/tasks/:id" element={<TaskDetails />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="*" element={<Navigate to="/welcome" replace />} />
-        </Routes>
+        <TaskProvider>
+            <Routes>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/welcome" element={<Welcome />} />
+                <Route path="/tasks" element={<Tasks />} />
+                <Route path="/tasks/:id" element={<TaskDetails />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="*" element={<Navigate to="/welcome" replace />} />
+            </Routes>
+        </TaskProvider>
+
     );
 };

@@ -1,25 +1,64 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "@/context/AuthContext";
-import {Link, useNavigate} from "react-router-dom";
+import { useUser } from "@/context/UserContext";  // <-- import
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import './auth.css';
 
 export default function Login() {
     const { register, handleSubmit } = useForm();
-    const { login, user } = useAuth();
+    const { login, user: authUser } = useAuth();
+    const { setUser } = useUser(); // get setUser to update UserContext
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (user) {
+        if (authUser) {
             navigate("/welcome");
         }
-    }, [user, navigate]);
-
+    }, [authUser, navigate]);
     const onSubmit = (data) => {
-        login(data.email);
-        navigate("/welcome");
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+
+        if (storedUser && storedUser.email === data.email && storedUser.password === data.password) {
+            login(storedUser);
+            setUser(storedUser);
+            navigate("/welcome");
+        } else {
+            alert("Invalid email or password");
+        }
     };
+
+
+    // const onSubmit = async (data) => {
+    //     try {
+    //         const response = await fetch('http://localhost:3000/api/login', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({
+    //                 email: data.email,
+    //                 password: data.password,
+    //             }),
+    //         });
+    //
+    //         if (!response.ok) {
+    //             const error = await response.text();
+    //             console.log(`Login failed: ${error}`);
+    //             return;
+    //         }
+    //
+    //         const user = await response.json();
+    //         login(user);
+    //         setUser(user);
+    //         navigate('/welcome');
+    //     } catch (err) {
+    //         console.error(err);
+    //         console.log('Something went wrong.');
+    //     }
+    // };
+
 
     return (
         <Container className="auth-container">

@@ -8,6 +8,7 @@ import ThemeProvider from "@/Context/ThemeContext.jsx";
 import './styles.css';
 import Preloader from "@/components/Preloader/Preloader.jsx";
 import { PreloaderProvider } from "@/Context/PreloaderContext.jsx";
+import {TaskProvider} from "@/Context/TaskProvider.jsx";
 
 const Root = () => {
     const [showPreloader, setShowPreloader] = useState(true);
@@ -33,7 +34,9 @@ const Root = () => {
             ) : (
                 <ThemeProvider>
                     <BrowserRouter>
-                        <App />
+                        {/*<TaskProvider>*/}
+                            <App />
+                        {/*</TaskProvider>*/}
                     </BrowserRouter>
                 </ThemeProvider>
             )}

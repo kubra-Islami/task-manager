@@ -16,8 +16,7 @@ const MainLayout = ({ children }) => {
                         md={9}
                         lg={10}
                         className="pt-5 mb-3"
-                        style={{ paddingBottom: '80px' }} // prevent overlap on small screens
-                    >
+                        style={{ paddingBottom: '80px' }}>
                         {children}
                     </Col>
                 </Row>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import MainLayout from '../../components/layout/MainLayout'
 import TaskForm from '../../components/task/TaskForm/TaskForm.jsx'
 import {Alert, Container} from "react-bootstrap";
@@ -6,6 +6,15 @@ import { useTasks } from '../../context/TaskContext';
 
 const Welcome = () => {
     const { tasks } = useTasks();
+
+    // export const useTasks = () => {
+    //     const context = useContext(TaskContext);
+    //     if (!context) {
+    //         throw new Error('useTasks must be used inside a TaskProvider');
+    //     }
+    //     return context;
+    // };
+
     const hasTasks = tasks.length > 0;
 
     return (
