@@ -30,7 +30,6 @@ const TaskDetails = () => {
         setTask(updatedTask);
     }, [tasks, id]);
 
-
     const handleEdit = (taskId) => {
         setSelectedTaskId(taskId);
         setShowEditModal(true);
@@ -49,7 +48,7 @@ const TaskDetails = () => {
         return (
             <MainLayout>
                 <div className="container mt-5">
-                    <h3>No task data found for ID: {id}</h3>
+                    <h3>No task data found </h3>
                     <Button variant="secondary" onClick={() => navigate(-1)}>Go Back</Button>
                 </div>
             </MainLayout>

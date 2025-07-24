@@ -6,15 +6,6 @@ import { useTasks } from '../../context/TaskContext';
 
 const Welcome = () => {
     const { tasks } = useTasks();
-
-    // export const useTasks = () => {
-    //     const context = useContext(TaskContext);
-    //     if (!context) {
-    //         throw new Error('useTasks must be used inside a TaskProvider');
-    //     }
-    //     return context;
-    // };
-
     const hasTasks = tasks.length > 0;
 
     return (

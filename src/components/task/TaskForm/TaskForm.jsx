@@ -28,7 +28,6 @@ const TaskForm = () => {
 
     const {addTask} = useTasks();
     const navigate = useNavigate();
-    const tag = watch('tag');
 
     const onSubmit = (data) => {
         const newTask = {

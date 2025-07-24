@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
-import { BrowserRouter } from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import ThemeProvider from "@/Context/ThemeContext.jsx";
 import './styles.css';
 import Preloader from "@/components/Preloader/Preloader.jsx";
-import { PreloaderProvider } from "@/Context/PreloaderContext.jsx";
+import {PreloaderProvider} from "@/Context/PreloaderContext.jsx";
 import {TaskProvider} from "@/Context/TaskProvider.jsx";
 
 const Root = () => {
@@ -30,15 +30,11 @@ const Root = () => {
     return (
         <PreloaderProvider isActive={showPreloader}>
             {showPreloader ? (
-                <Preloader />
+                <Preloader/>
             ) : (
-                <ThemeProvider>
-                    <BrowserRouter>
-                        {/*<TaskProvider>*/}
-                            <App />
-                        {/*</TaskProvider>*/}
-                    </BrowserRouter>
-                </ThemeProvider>
+                <BrowserRouter>
+                    <App/>
+                </BrowserRouter>
             )}
         </PreloaderProvider>
     );
@@ -46,6 +42,6 @@ const Root = () => {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <Root />
+        <Root/>
     </React.StrictMode>
 );
