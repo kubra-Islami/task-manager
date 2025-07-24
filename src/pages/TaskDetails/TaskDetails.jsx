@@ -13,17 +13,19 @@ const TaskDetails = () => {
     const {id} = useParams();
     const location = useLocation();
     const navigate = useNavigate();
-    const {tasks} = useTasks();
+
+    const { tasks, getTaskById } = useTasks();
+    const [task, setTask] = useState(null);
 
     const [selectedTaskId, setSelectedTaskId] = useState(null);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-    const [task, setTask] = useState(() => {
-        const taskFromState = location.state?.task;
-        const taskFromContext = tasks.find(t => t.id === Number(id));
-        return taskFromState || taskFromContext;
-    });
+    useEffect(() => {
+        const fromState = location.state?.task;
+        const fromContext = getTaskById(id);
+        setTask(fromState || fromContext || null);
+    }, [location.state, id, tasks]);
 
     useEffect(() => {
         const updatedTask = tasks.find(t => t.id === Number(id));
@@ -54,6 +56,19 @@ const TaskDetails = () => {
             </MainLayout>
         );
     }
+
+    // if (!task) {
+    //     return (
+    //         <MainLayout>
+    //             <div className="container mt-5">
+    //                 <h3>Loading task data...</h3>
+    //                 <Button variant="secondary" onClick={() => navigate(-1)}>Go Back</Button>
+    //             </div>
+    //         </MainLayout>
+    //     );
+    // }
+
+
 
     const getStatusBadgeClass = (status) => {
         switch (status) {

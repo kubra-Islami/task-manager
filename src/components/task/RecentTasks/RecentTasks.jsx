@@ -61,11 +61,10 @@ const RecentTasks = () => {
                             <div className="d-flex align-items-center gap-3 flex-grow-1 justify-content-between">
                                 <div className="d-flex align-items-center gap-3">
                                     {getStatusIcon(task.status)}
-                                    <div className="text-truncate task-info">
-                                       <span className="fw-semibold">
+                                    <div className="text-truncate task-info ">
+                                       <span className="fw-semibold pe-5">
                                           {typeof task.title === 'string' ? task.title : JSON.stringify(task.title)}
                                        </span>
-                                        {/*<span className="fw-semibold">{task.title}</span><br />*/}
                                         <small className="text-muted">
                                             Due: {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'Not set'}
                                         </small>

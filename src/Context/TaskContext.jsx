@@ -1,91 +1,54 @@
-import React, {createContext, useContext, useState, useEffect} from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
+import { useAuth } from '@/Context/AuthContext.jsx';
 
-
-const useAuth = () => {
-    const stored = localStorage.getItem("user");
-    return stored ? JSON.parse(stored) : {email: "guest@example.com"};
-};
-
-const TaskContext = createContext();
+const TaskContext = createContext(null);
 
 export const useTasks = () => {
-    const context = useContext(TaskContext);
-    if (!context) {
-        throw new Error('useTasks must be used inside a TaskProvider');
-    }
-    return context;
+    const ctx = useContext(TaskContext);
+    if (!ctx) throw new Error('useTasks must be used inside a TaskProvider');
+    return ctx;
 };
 
-export const TaskProvider = ({children}) => {
-    const {email} = useAuth();
-    const [tasks, setTasks] = useState([]);
+export const TaskProvider = ({ children }) => {
+    const { user } = useAuth();
+    const email = user?.email;
 
-    useEffect(() => {
+    // load once, synchronously, so we don't save [] first
+    const [tasks, setTasks] = useState(() => {
         const saved = localStorage.getItem(`tasks_${email}`);
-        const parsed = saved ? JSON.parse(saved) : [];
-        setTasks(parsed);
+        return saved ? JSON.parse(saved) : [];
+    });
+
+    // when the email changes (user switches), reload that user's tasks
+    const prevEmailRef = useRef(email);
+    useEffect(() => {
+        if (prevEmailRef.current !== email) {
+            const saved = localStorage.getItem(`tasks_${email}`);
+            setTasks(saved ? JSON.parse(saved) : []);
+            prevEmailRef.current = email;
+        }
     }, [email]);
 
+    // save after tasks change (but only for the current email)
     useEffect(() => {
         localStorage.setItem(`tasks_${email}`, JSON.stringify(tasks));
     }, [tasks, email]);
 
-
-    const addTask = (task) => setTasks((prev) => [...prev, task]);
+    const addTask = (task) => setTasks(prev => [...prev, task]);
 
     const updateTask = (updatedTask) => {
-        setTasks(prevTasks =>
-            prevTasks.map(task => task.id === updatedTask.id ? updatedTask : task)
-        );
+        setTasks(prev => prev.map(t => (t.id === updatedTask.id ? updatedTask : t)));
     };
 
-    const getTaskById = (id) => tasks.find((task) => task.id === id);
+    const deleteTask = (id) => {
+        setTasks(prev => prev.filter(t => t.id !== id));
+    };
+
+    const getTaskById = (id) => tasks.find(t => String(t.id) === String(id));
 
     return (
-        <TaskContext.Provider value={{tasks, setTasks, addTask, updateTask, getTaskById}}>
+        <TaskContext.Provider value={{ tasks, setTasks, addTask, updateTask, deleteTask, getTaskById }}>
             {children}
         </TaskContext.Provider>
     );
 };
-
-// export const TaskProvider = ({ children }) => {
-//
-//     const { email } = useAuth();
-//     const [tasks, setTasks] = useState([]);
-//
-//     useEffect(() => {
-//         const saved = localStorage.getItem(`tasks_${email}`);
-//         const parsed = saved ? JSON.parse(saved) : [];
-//         // Only update state if different
-//         setTasks(prev => {
-//             const prevStr = JSON.stringify(prev);
-//             const parsedStr = JSON.stringify(parsed);
-//             return prevStr !== parsedStr ? parsed : prev;
-//         });
-//     }, [email]);
-//
-//
-//     useEffect(() => {
-//         localStorage.setItem(`tasks_${email}`, JSON.stringify(tasks));
-//     }, [tasks,email]);
-//
-//     const addTask = (task) => {
-//         // localStorage.setItem(`tasks_${email}`, JSON.stringify(tasks))
-//         setTasks((prev) => [...prev, task]);
-//     };
-//
-//     const updateTask = (updatedTask) => {
-//         setTasks(prevTasks =>
-//             prevTasks.map(task =>
-//                 task.id === updatedTask.id ? updatedTask : task
-//             )
-//         );
-//     };
-//     const getTaskById = (id) => tasks.find((task) => task.id === id);
-//
-//     return (
-//         <TaskContext.Provider value={{ tasks,setTasks, addTask, updateTask, getTaskById }}>
-//             {children}
-//         </TaskContext.Provider>
-//     );
-// };

@@ -8,16 +8,17 @@ import {AuthProvider} from "@/Context/AuthContext.jsx";
 function App() {
     const isLoggedIn = true;
     return (
-        <TaskProvider>
-            <AuthProvider>
+        <AuthProvider>
+            <TaskProvider>
                 <ThemeProvider>
                     <UserProvider>
                         <RouteSpinner/>
                         <AppRoutes isLoggedIn={isLoggedIn}/>
                     </UserProvider>
                 </ThemeProvider>
-            </AuthProvider>
-        </TaskProvider>
+            </TaskProvider>
+        </AuthProvider>
+
     );
 }
 
