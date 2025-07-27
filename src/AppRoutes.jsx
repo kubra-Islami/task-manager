@@ -2,12 +2,12 @@ import {Routes, Route, Navigate, BrowserRouter} from 'react-router-dom';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Welcome from "@/pages/Welcome/Welcome";
 import Profile from './pages/Profile/Profile';
-import Settings from './pages/Settings/Settings';
 import Tasks from './pages/Tasks/Tasks';
 import TaskDetails from "@/pages/TaskDetails/TaskDetails";
 import Login from "@/pages/Auth/Login.jsx";
 import Register from "@/pages/Auth/Register.jsx";
 import {useAuth} from "./context/AuthContext";
+import EditProfile from "./pages/EditProfile/EditProfile.jsx";
 
 export const AppRoutes = () => {
     const {user} = useAuth();
@@ -30,7 +30,7 @@ export const AppRoutes = () => {
                 <Route path="/tasks" element={<Tasks/>}/>
                 <Route path="/tasks/:id" element={<TaskDetails/>}/>
                 <Route path="/profile" element={<Profile/>}/>
-                <Route path="/settings" element={<Settings/>}/>
+                <Route path="/editprofile" element={<EditProfile/>}/>
                 <Route path="*" element={<Navigate to="/welcome" replace/>}/>
             </Routes>
     );

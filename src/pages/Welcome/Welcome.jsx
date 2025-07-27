@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import MainLayout from '../../components/layout/MainLayout'
 import TaskForm from '../../components/task/TaskForm/TaskForm.jsx'
 import {Alert, Container} from "react-bootstrap";
@@ -18,7 +18,7 @@ const Welcome = () => {
 
                     {hasTasks ? (
                         <>
-                            🚀 You're on a roll! Add more tasks or update the existing ones.
+                            🚀 Add more tasks or update the existing ones.
                         </>
                     ) : (
                         <>

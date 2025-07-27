@@ -7,9 +7,7 @@ const CustomNavbar = () => {
     const {user} = useUser();
     const {theme, toggleTheme} = useTheme();
 
-    const avatarSrc =
-        user?.avatar ||
-        user_image;
+    const avatarSrc =`http://localhost:5000${user?.avatar || user_image}`;
 
     return (
         <Navbar className="theme-bg px-3 py-2 navbar" expand="lg">
@@ -23,7 +21,7 @@ const CustomNavbar = () => {
                     >
             <span
                 className="d-none d-sm-inline-block text-truncate"
-                style={{maxWidth: '150px'}}
+                style={{maxWidth: '200px'}}
             >
               👋 Hello, {user?.name || 'Guest'}
             </span>

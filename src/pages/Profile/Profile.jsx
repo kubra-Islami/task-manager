@@ -18,7 +18,7 @@ const Profile = () => {
     }, [tasks]);
 
     const handleEditProfile = () => {
-        navigate('/settings');
+        navigate('/editprofile');
     };
 
     const handleLogout = () => {
@@ -34,11 +34,11 @@ const Profile = () => {
                         <Row className="align-items-center mb-4">
                             <Col xs={12} md={4} className="text-center text-md-start mb-3 mb-md-0">
                                 <Image
-                                    src={user?.avatar || user_image}
+                                    src={`http://localhost:5000${user?.avatar || user_image}`}
                                     roundedCircle
                                     width={120}
                                     height={120}
-                                    alt="Profile"
+                                    alt="User Avatar"
                                     className="mb-3"
                                 />
                             </Col>

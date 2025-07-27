@@ -5,7 +5,7 @@ import { useAuth } from '@/Context/AuthContext.jsx';
 import MainLayout from '@/components/layout/MainLayout.jsx';
 import user_image from "../../assets/user.jpg";
 
-const Settings = () => {
+const EditProfile = () => {
     const { user, setUser } = useAuth();
     const { theme, toggleTheme } = useTheme();
 
@@ -32,6 +32,33 @@ const Settings = () => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    // const handleAvatarChange = (e) => {
+    //     const file = e.target.files[0];
+    //     if (file) {
+    //         const reader = new FileReader();
+    //         reader.onload = () => {
+    //             setFormData((prev) => ({ ...prev, avatar: reader.result }));
+    //         };
+    //         reader.readAsDataURL(file);
+    //     }
+    // };
+    // const handleAvatarChange = async (e) => {
+    //     const file = e.target.files[0];
+    //     if (file) {
+    //         const formData = new FormData();
+    //         formData.append('avatar', file);
+    //
+    //         const response = await fetch('http://localhost:5000/upload-avatar', {
+    //             method: 'POST',
+    //             body: formData,
+    //         });
+    //
+    //         const data = await response.json();
+    //         if (data.filePath) {
+    //             setFormData((prev) => ({ ...prev, avatar: data.filePath }));
+    //         }
+    //     }
+    // };
     const handleAvatarChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -42,12 +69,28 @@ const Settings = () => {
             reader.readAsDataURL(file);
         }
     };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setUser(formData);
         localStorage.setItem("user", JSON.stringify(formData));
-        alert('✅ Profile updated successfully!');
+
+
+        const file = e.target.files[0];
+        if (file) {
+            const formData = new FormData();
+            formData.append('avatar', file);
+
+            const response = await fetch('http://localhost:5000/upload-avatar', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await response.json();
+            if (data.filePath) {
+                setFormData((prev) => ({...prev, avatar: data.filePath}));
+            }
+        }
+        // alert('✅ Profile updated successfully!');
     };
 
     return (
@@ -119,7 +162,7 @@ const Settings = () => {
 
                             <Col md={6} className="text-center mt-4 mt-md-0">
                                 <img
-                                    src={formData.avatar || user_image}
+                                    src={`http://localhost:5000${user?.avatar || user_image}`}
                                     alt="Avatar Preview"
                                     className="rounded-circle shadow-sm border"
                                     width={120}
@@ -135,4 +178,4 @@ const Settings = () => {
     );
 };
 
-export default Settings;
+export default EditProfile;
