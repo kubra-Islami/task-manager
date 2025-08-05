@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useAuth } from "@/context/AuthContext";
-import { useUser } from "@/context/UserContext";
+import { useAuth } from "../../Context/AuthContext.jsx";
+import { useUser } from "../../Context/UserContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import "./auth.css";

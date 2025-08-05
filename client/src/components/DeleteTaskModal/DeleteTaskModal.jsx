@@ -1,6 +1,6 @@
 import {Button, Modal} from "react-bootstrap";
 import React from "react";
-import {useTasks} from "@/Context/TaskContext.jsx";
+import {useTasks} from "../../Context/TaskContext.jsx";
 import {useNavigate} from "react-router-dom";
 
 const DeleteTaskModal = ({show, handleClose, taskId}) => {

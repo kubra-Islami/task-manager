@@ -3,10 +3,10 @@ import {useLocation, useParams, useNavigate} from 'react-router-dom';
 
 import {Button, Badge} from 'react-bootstrap';
 import {format} from 'date-fns';
-import TaskFormModal from "@/components/TaskFormModal/TaskFormModal.jsx";
-import {useTasks} from "@/Context/TaskContext.jsx";
-import MainLayout from "@/components/layout/MainLayout.jsx";
-import DeleteTaskModal from "@/components/DeleteTaskModal/DeleteTaskModal.jsx";
+import TaskFormModal from "../../components/TaskFormModal/TaskFormModal.jsx";
+import {useTasks} from "../../Context/TaskContext.jsx";
+import MainLayout from "../../components/layout/MainLayout.jsx";
+import DeleteTaskModal from "../../components/DeleteTaskModal/DeleteTaskModal.jsx";
 
 
 const TaskDetails = () => {

@@ -1,5 +1,5 @@
-import Navbar from './Navbar';
-import Sidebar from './Sidebar';
+import Navbar from './Navbar.jsx';
+import Sidebar from './Sidebar.jsx';
 import { Container, Row, Col } from 'react-bootstrap';
 
 const MainLayout = ({ children }) => {

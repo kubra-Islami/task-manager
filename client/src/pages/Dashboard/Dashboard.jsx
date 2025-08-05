@@ -5,7 +5,7 @@
 // src/pages/Dashboard/Dashboard.jsx
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import MainLayout from '../../components/layout/MainLayout'
+import MainLayout from '../../components/layout/MainLayout.jsx'
 
 const Dashboard = () => {
     const [tasks, setTasks] = useState([])

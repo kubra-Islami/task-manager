@@ -1,7 +1,7 @@
 import {Nav} from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
 import './Sidebar.css';
-import {useTheme} from "@/Context/ThemeContext.jsx"; // Import the custom CSS file
+import {useTheme} from "../../Context/ThemeContext.jsx"; // Import the custom CSS file
 const Sidebar = () => {
     const {theme} = useTheme();
 

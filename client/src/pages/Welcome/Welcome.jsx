@@ -1,8 +1,8 @@
 import React from 'react'
-import MainLayout from '../../components/layout/MainLayout'
+import MainLayout from '../../components/layout/MainLayout.jsx'
 import TaskForm from '../../components/task/TaskForm/TaskForm.jsx'
 import {Alert, Container} from "react-bootstrap";
-import { useTasks } from '../../context/TaskContext';
+import { useTasks } from '../../Context/TaskContext.jsx';
 
 const Welcome = () => {
     const { tasks } = useTasks();

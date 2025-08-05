@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import MainLayout from '../../components/layout/MainLayout';
+import MainLayout from '../../components/layout/MainLayout.jsx';
 import {Container, Row, Col, Button, Image, ListGroup} from 'react-bootstrap';
-import {useTasks} from '../../context/TaskContext';
+import {useTasks} from '../../Context/TaskContext.jsx';
 import {useNavigate} from 'react-router-dom';
-import {useAuth} from '@/context/AuthContext';
-import RecentTasks from "@/components/task/RecentTasks/RecentTasks.jsx";
+import {useAuth} from '../../Context/AuthContext.jsx';
+import RecentTasks from "../../components/task/RecentTasks/RecentTasks.jsx";
 import user_image from "../../assets/user.jpg";
 import './Profile.css';
 

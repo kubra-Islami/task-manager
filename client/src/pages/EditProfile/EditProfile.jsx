@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
-import { useTheme } from '@/Context/ThemeContext.jsx';
-import { useAuth } from '@/Context/AuthContext.jsx';
-import MainLayout from '@/components/layout/MainLayout.jsx';
+import { useTheme } from '../../Context/ThemeContext.jsx';
+import { useAuth } from '../../Context/AuthContext.jsx';
+import MainLayout from '../../components/layout/MainLayout.jsx';
 import user_image from "../../assets/user.jpg";
 
 const EditProfile = () => {

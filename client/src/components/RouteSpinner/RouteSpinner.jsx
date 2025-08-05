@@ -32,8 +32,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
-import { useTheme } from '@/Context/ThemeContext.jsx';
-import { usePreloader } from '@/Context/PreloaderContext.jsx';
+import { useTheme } from '../../Context/ThemeContext.jsx';
+import { usePreloader } from '../../Context/PreloaderContext.jsx';
 
 const RouteSpinner = () => {
     const location = useLocation();

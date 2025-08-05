@@ -1,6 +1,6 @@
 import {Navbar, Container, Nav} from 'react-bootstrap';
-import {useUser} from '@/Context/UserContext.jsx';
-import {useTheme} from '@/Context/ThemeContext.jsx';
+import {useUser} from '../../Context/UserContext.jsx';
+import {useTheme} from '../../Context/ThemeContext.jsx';
 import user_image from "../../assets/user.jpg";
 
 const CustomNavbar = () => {

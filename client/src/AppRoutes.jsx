@@ -1,12 +1,12 @@
 import {Routes, Route, Navigate, BrowserRouter} from 'react-router-dom';
-import Dashboard from './pages/Dashboard/Dashboard';
-import Welcome from "@/pages/Welcome/Welcome";
-import Profile from './pages/Profile/Profile';
-import Tasks from './pages/Tasks/Tasks';
-import TaskDetails from "@/pages/TaskDetails/TaskDetails";
-import Login from "@/pages/Auth/Login.jsx";
-import Register from "@/pages/Auth/Register.jsx";
-import {useAuth} from "./context/AuthContext.jsx";
+import Dashboard from './pages/Dashboard/Dashboard.jsx';
+import Welcome from "./pages/Welcome/Welcome.jsx";
+import Profile from './pages/Profile/Profile.jsx';
+import Tasks from './pages/Tasks/Tasks.jsx';
+import TaskDetails from "./pages/TaskDetails/TaskDetails.jsx";
+import Login from "./pages/Auth/Login.jsx";
+import Register from "./pages/Auth/Register.jsx";
+import {useAuth} from "./Context/AuthContext.jsx";
 import EditProfile from "./pages/EditProfile/EditProfile.jsx";
 
 export const AppRoutes = () => {

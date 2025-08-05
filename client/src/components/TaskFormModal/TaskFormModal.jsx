@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {Modal, Button, Form, InputGroup} from 'react-bootstrap';
 import {useForm, useFieldArray} from 'react-hook-form';
-import {useTasks} from '../../context/TaskContext';
-import {useTheme} from '../../context/ThemeContext';
+import {useTasks} from '../../Context/TaskContext.jsx';
+import {useTheme} from '../../Context/ThemeContext.jsx';
 
 const TaskFormModal = ({show, handleClose, taskId}) => {
     const {tasks, updateTask} = useTasks();

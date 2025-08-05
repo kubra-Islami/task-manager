@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
 import { BsCheckCircleFill, BsClockHistory, BsExclamationCircleFill } from 'react-icons/bs';
 import './RecentTasks.css';
-import {useTasks} from "@/Context/TaskContext.jsx"; // your custom styles
+import {useTasks} from "../../../Context/TaskContext.jsx"; // your custom styles
 
 const RecentTasks = () => {
     const { tasks } = useTasks();

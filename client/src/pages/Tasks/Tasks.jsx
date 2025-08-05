@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { Button, Table} from 'react-bootstrap';
-import {useTasks} from '../../context/TaskContext';
-import MainLayout from '../../components/layout/MainLayout';
-import TaskFilter from '@/components/task/TaskFilters/TaskFilters.jsx';
+import {useTasks} from '../../Context/TaskContext.jsx';
+import MainLayout from '../../components/layout/MainLayout.jsx';
+import TaskFilter from '../../components/task/TaskFilters/TaskFilters.jsx';
 import {
     DndContext,
     closestCenter,
@@ -17,8 +17,8 @@ import {
 } from '@dnd-kit/sortable';
 
 import './tasks.css';
-import SortableTasks from '@/components/task/SortableTasks/SortableTasks.jsx';
-import RenderPagination from '@/components/task/Pagination/RenderPagination.jsx';
+import SortableTasks from '../../components/task/SortableTasks/SortableTasks.jsx';
+import RenderPagination from '../../components/task/Pagination/RenderPagination.jsx';
 
 const Tasks = () => {
     const {tasks, setTasks} = useTasks();
