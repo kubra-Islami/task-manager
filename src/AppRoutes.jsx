@@ -6,7 +6,7 @@ import Tasks from './pages/Tasks/Tasks';
 import TaskDetails from "@/pages/TaskDetails/TaskDetails";
 import Login from "@/pages/Auth/Login.jsx";
 import Register from "@/pages/Auth/Register.jsx";
-import {useAuth} from "./context/AuthContext";
+import {useAuth} from "./context/AuthContext.jsx";
 import EditProfile from "./pages/EditProfile/EditProfile.jsx";
 
 export const AppRoutes = () => {
