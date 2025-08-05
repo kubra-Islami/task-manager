@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {useSortable} from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
 import {format} from 'date-fns';
@@ -23,8 +23,6 @@ const getStatusBadgeClass = (status) => {
 
 
 const SortableTasks = ({id, task}) => {
-// const SortableTasks = React.memo(({id, task, index}) => {
-
     const {
         attributes,
         listeners,
@@ -36,11 +34,6 @@ const SortableTasks = ({id, task}) => {
         id,
         disabled: false,
     });
-
-    useEffect(() => {
-        console.log('task inside SortableTask:', task); // Use a comma, not string concatenation
-        // console.log(JSON.stringify(task, null, 2)); // Pretty print the object
-    }, []);
 
     const style = {
         transform: CSS.Transform.toString(transform),

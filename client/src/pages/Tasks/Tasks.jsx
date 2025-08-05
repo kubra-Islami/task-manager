@@ -15,6 +15,7 @@ import {
     arrayMove,
     verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
+
 import './tasks.css';
 import SortableTasks from '@/components/task/SortableTasks/SortableTasks.jsx';
 import RenderPagination from '@/components/task/Pagination/RenderPagination.jsx';
