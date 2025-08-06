@@ -1,12 +1,11 @@
 import {Nav} from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
 import './Sidebar.css';
-import {useTheme} from "../../Context/ThemeContext.jsx"; // Import the custom CSS file
+import {useTheme} from "../../Context/ThemeContext.jsx";
 const Sidebar = () => {
     const {theme} = useTheme();
 
     return (
-        // <div className="sidebar d-flex flex-column p-3 bg-light shadow-sm w-100" >
         <div className={`sidebar sidebar-wrapper d-flex flex-column p-3 shadow-sm w-100 ${theme}-theme`}
              style={{backgroundColor: 'var(--card-bg)', color: 'var(--text-color)'}}>
             <h5 className="mb-4 fw-bold ps-2">✨ Task Manager</h5>
