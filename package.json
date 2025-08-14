@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -16,7 +16,6 @@
     "@dnd-kit/sortable": "^10.0.0",
     "bootstrap": "^5.3.5",
     "classnames": "^2.5.1",
-    "express": "^5.1.0",
     "framer-motion": "^12.7.4",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",

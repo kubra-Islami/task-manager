@@ -13,8 +13,8 @@
     "checkJs": false
   },
   "include": [
-    "client/src/**/*.ts",
-    "client/src/**/*.tsx",
-    "client/src/**/*.d.ts"
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.d.ts"
   ]
 }

@@ -23,6 +23,6 @@
     "noUncheckedSideEffectImports": true
   },
   "include": [
-    "client/src"
+    "src"
   ]
 }
