@@ -31,7 +31,7 @@ export const AppRoutes = () => {
                 <Route path="/tasks/:id" element={<TaskDetails/>}/>
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/editprofile" element={<EditProfile/>}/>
-                <Route path="*" element={<Navigate to="/welcome" replace/>}/>
+                <Route path="*" element={<Navigate to="/" replace/>}/>
             </Routes>
     );
 };
