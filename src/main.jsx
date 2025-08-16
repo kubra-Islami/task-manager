@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
 import {BrowserRouter} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import './styles.css';
 import Preloader from "./components/Preloader/Preloader.jsx";
 import {PreloaderProvider} from "./Context/PreloaderContext.jsx";
+import App from './App.jsx';
+
 
 const Root = () => {
     const [showPreloader, setShowPreloader] = useState(true);
