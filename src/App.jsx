@@ -6,14 +6,17 @@ import RouteSpinner from "./components/RouteSpinner/RouteSpinner.jsx";
 import {AuthProvider} from "./Context/AuthContext.jsx";
 
 function App() {
-    const isLoggedIn = true;
+    // const isLoggedIn = false;
+
+
     return (
         <AuthProvider>
             <TaskProvider>
                 <ThemeProvider>
                     <UserProvider>
                         <RouteSpinner/>
-                        <AppRoutes isLoggedIn={isLoggedIn}/>
+                        {/*<AppRoutes isLoggedIn={isLoggedIn}/>*/}
+                        <AppRoutes/>
                     </UserProvider>
                 </ThemeProvider>
             </TaskProvider>

@@ -8,67 +8,71 @@ import "./auth.css";
 
 export default function Register() {
     const { register: formRegister, handleSubmit } = useForm();
-    const { login, user: authUser } = useAuth();
+    // const { login, user: authUser } = useAuth();
     const { setUser } = useUser();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (authUser) {
-            navigate("/welcome");
-        }
-    }, [authUser, navigate]);
-
-    // const onSubmit = async (data) => {
-    //     console.log('onsubmit')
-    //     const newUser = {
-    //         name: data.name,
-    //         email: data.email,
-    //         password: data.password,
-    //         avatar: 'src/assets/user.jpg', // Optional default avatar
-    //     };
-    //
-    //     try {
-    //         const response = await fetch('http://localhost:3000/api/register', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify(newUser),
-    //         });
-    //
-    //
-    //         if (!response.ok) {
-    //             const error = await response.text();
-    //             console.log(`Registration failed: ${error}`);
-    //             return;
-    //         }
-    //
-    //         const savedUser = await response.json();
-    //         login(savedUser);
-    //         setUser(savedUser);
-    //         console.log(newUser)
-    //         navigate('/welcome');
-    //     } catch (err) {
-    //         console.log('Something went wrong.' + err);
+    // useEffect(() => {
+    //     if (authUser) {
+    //         navigate("/welcome");
     //     }
-    // };
+    // }, [authUser, navigate]);
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
+
+        console.log(data);
+        // console.log('onsubmit')
         const newUser = {
             name: data.name,
             email: data.email,
             password: data.password,
-            avatar: 'src/assets/user.jpg',
+            // avatar: 'src/assets/user.jpg', // Optional default avatar
         };
 
-        // Save to localStorage as JSON string
-        localStorage.setItem('user', JSON.stringify(newUser));
+        try {
+            const response = await fetch('https://task-manager-api-ux7e.onrender.com/user/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newUser),
+            });
 
-        // Login the user and redirect
-        login(newUser);
-        setUser(newUser);
-        navigate('/welcome');
+            // console.log(response.status);
+
+            if (response.status === 500) {
+                const error = await response.text();
+                console.log(`Registration failed: ${error}`);
+                return;
+            }
+
+            // const savedUser = await response.json();
+            // login(savedUser);
+            // setUser(savedUser);
+            console.log(newUser)
+            navigate('/welcome');
+        }
+        catch (err) {
+            console.log('Something went wrong.' + err);
+        }
     };
+
+    // const onSubmit = (data) => {
+    //     const newUser = {
+    //         name: data.name,
+    //         email: data.email,
+    //         password: data.password,
+    //         avatar: 'src/assets/user.jpg',
+    //     };
+    //
+    //     // Save to localStorage as JSON string
+    //     localStorage.setItem('user', JSON.stringify(newUser));
+    //
+    //     // Login the user and redirect
+    //     login(newUser);
+    //     setUser(newUser);
+    //     navigate('/welcome');
+    // };
 
 
 

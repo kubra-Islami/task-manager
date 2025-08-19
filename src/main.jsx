@@ -8,6 +8,9 @@ import Preloader from "./components/Preloader/Preloader.jsx";
 import {PreloaderProvider} from "./Context/PreloaderContext.jsx";
 import App from './App.jsx';
 
+// url to fetch data
+// https://task-manager-api-ux7e.onrender.com
+
 
 const Root = () => {
     const [showPreloader, setShowPreloader] = useState(true);
