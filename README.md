@@ -1,4 +1,4 @@
-# 📌 Task Management Full Stack Web App
+# 📌 Task Management UI
 
 A simple and efficient **Task Manager Dashboard** built as a **full stack web application** using **React, JavaScript, Bootstrap** on the frontend, and **Node.js, Express, and PostgreSQL** on the backend.  
 This app allows users to **create, update, delete, and mark tasks as done** while maintaining a smooth user experience and persistent data storage.
